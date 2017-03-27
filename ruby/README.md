@@ -26,7 +26,7 @@ from this guide). In the event of any conflicts, such
 project-specific guides take precedence for that project.
 
 
-[RuboCop][] is a code analyzer, based on this
+[RuboCop][https://github.com/bbatsov/rubocop] is a code analyzer, based on this
 style guide. A rubocop configuration is included in this repo.
 
 
