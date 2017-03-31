@@ -6,7 +6,7 @@ TopTier Guides
 ## Languages
 
 * [Ruby](./ruby)
-* [Swift](https://github.com/raywenderlich/swift-style-guide)
+* [Swift](./swift)
 * [Javascript](https://github.com/airbnb/javascript)
 
 ## Frameworks/Libraries
