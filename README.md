@@ -8,6 +8,7 @@ TopTier Guides
 * [Ruby](./ruby)
 * [Swift](./swift)
 * [Javascript](https://github.com/airbnb/javascript)
+* [CSS](./css.md)
 
 ## Frameworks/Libraries
 
