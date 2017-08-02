@@ -2,6 +2,7 @@ TopTier Guides
 ======
 
 * [Code review](./code-review)
+* [Git Workflow](./git)
 
 ## Languages
 
