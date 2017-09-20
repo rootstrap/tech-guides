@@ -1,7 +1,3 @@
-# Prelude
-
-
-
 # The Ruby Style Guide
 
 This Ruby style guide recommends best practices so that real-world Ruby
@@ -26,8 +22,8 @@ from this guide). In the event of any conflicts, such
 project-specific guides take precedence for that project.
 
 
-[RuboCop][https://github.com/bbatsov/rubocop] is a code analyzer, based on this
-style guide. A rubocop configuration is included in this repo.
+[RuboCop](https://github.com/bbatsov/rubocop) is a code analyzer, based on this
+style guide. You can take a look at the [rails api base rubocop config](https://github.com/rootstrap/rails_api_base/blob/master/.rubocop.yml).
 
 
 ## Table of Contents
