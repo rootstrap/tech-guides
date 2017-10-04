@@ -4,6 +4,7 @@ Rootstrap Guides
 * [Code review](./code-review)
 * [Git Workflow](./git)
 * [Git commits](./git/commits.md)
+* [Open Source](./open_source.md)
 
 ## Languages
 
