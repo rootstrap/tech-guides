@@ -18,7 +18,7 @@ Rootstrap Guides
 * [Ruby on Rails](./ruby/rails.md)
 * [Angular 1](https://github.com/johnpapa/angular-styleguide/blob/master/a1)
 * [React](https://github.com/airbnb/javascript/tree/master/react)
-* [RSpec](http://betterspecs.org)
+* [RSpec](./ruby/rspec/README.md)
 
 
 If you disagree with a guideline, open an issue on the guides repo rather than

@@ -118,7 +118,7 @@ Si se realizan cambios en las branches, se puede mergear de nuevo ese cambio en 
 *Es recomendable hacer el deploy de esta branch a un ambiente previo a staging, como puede ser development. Ver: manejo de environnements en base a git workflow (documento en construcción)*
 
 <p align="center">
-  <img src="/images/demo-branch.jpg" width="420px" height="500px"/>
+  <img src="demo-branch.jpg" width="420px" height="500px"/>
 </p>
 
 
@@ -209,7 +209,7 @@ Para esto, se deben seguir los mismos pasos detallados en la subsección **integ
 * **Casos de uso:** Bugs o cambios críticos de producción
 
 <p align="center">
-  <img src="/images/hotfix-branch.jpg" width="420px" height="560px"/>
+  <img src="hotfix-branch.jpg" width="420px" height="560px"/>
 </p>
 
 
