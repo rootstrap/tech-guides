@@ -101,7 +101,7 @@ It is a temporal branch created from develop where all branches that are not rea
 
 Changes in this branch will be reflected in develop after reviewed and approved in a code review process.
 
-* **Origin**:  *develop*
+* **Origin**:  develop
 * **Destination:** delete branch
 * **Use case:** Integration of all the features (completed or not) needed in a review session. A PR approved by code review is a requirement to merge a new feature to **_develop_**, sometimes, due to different reasons (incomplete or unreviewed code), new features are not ready on time to be presented to the PO in a demo. In order to solve this inconvenience, a temporal branch is created to be deployed or to create a build from it (depending on technology); there, all the branches to be shown in a review can be merged automatically without the need of a code review.
 
@@ -114,6 +114,18 @@ If there is a change of any kind in the feature branches in a commit (*git amend
 <p align="center">
   <img src="/images/demo-branch.jpg" width="420px" height="500px"/>
 </p>
+
+### Epic branch (epic/x)
+
+This branch has the desire of organizing the code review in smaller parts. Some features can't be translated in only 1 PR because they involve a lot of code and testing of the whole feature, think it as a module, it doesn't make sense to deploy part of the module, after all the features that are part of the epic are merged, it can be tested in staging and deployed in production.
+
+Hence the developer will make PRs of each feature of the epic to the epic branch, and when the epic branch is ready, it can be merged to the development branch with the optional review of it because it was already reviewed, like the release branch that will be mentioned later.
+
+_Example: epic/marketing_
+
+* **Origin:** develop
+* **Destination:** develop
+* **Use case:** Integration of all the features that composes the epic.
 
 ## Post production release <a name="post-release"></a>
 
