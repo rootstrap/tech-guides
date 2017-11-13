@@ -112,7 +112,7 @@ If there is a change of any kind in the feature branches in a commit (*git amend
 *This branch can be deployed in an environment previous to staging such as development. See: Environment management base on the git workflow (work in progress)*
 
 <p align="center">
-  <img src="/images/demo-branch.jpg" width="420px" height="500px"/>
+  <img src="demo-branch.jpg" width="420px" height="500px"/>
 </p>
 
 ## Post production release <a name="post-release"></a>
@@ -187,7 +187,7 @@ It is the **developer's responsibility** to reflect that hotfix in develop **imm
 * **Use case:** Critical changes that affect the expected behaviour of the application in production
 
 <p align="center">
-  <img src="/images/hotfix-branch.jpg" width="420px" height="560px"/>
+  <img src="hotfix-branch.jpg" width="420px" height="560px"/>
 </p>
 
 
