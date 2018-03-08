@@ -23,6 +23,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 
 * [Ruby on Rails](./ruby/rails.md)
 * [Angular 1](https://github.com/johnpapa/angular-styleguide/blob/master/a1)
+* [Angular 2+](https://angular.io/guide/styleguide)
 * [React](https://github.com/airbnb/javascript/tree/master/react)
 * [RSpec](./ruby/rspec/README.md)
 
