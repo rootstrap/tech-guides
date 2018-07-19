@@ -2538,7 +2538,7 @@ no parameters.
 
   # good
   module SomeModule
-    module_function
+    extend self
 
     def some_method
       # body omitted
@@ -2550,15 +2550,28 @@ no parameters.
   end
   ```
 
-* <a name="module-function"></a>
-  Favor the use of `module_function` over `extend self` when you want to turn
-  a module's instance methods into class methods.
-<sup>[[link](#module-function)]</sup>
+* <a name="extend-self"></a>
+  Favor the use of `extend self` over `module_function` and `def self.*` when
+  you want to turn a module's instance methods into class methods, unless you
+  need `module_function`.
+<sup>[[link](#extend-self)]</sup>
 
   ```Ruby
   # bad
   module Utilities
-    extend self
+    def self.parse_something(string)
+      # do stuff here
+    end
+
+    def self.other_utility_method(number, string)
+      # do some more stuff
+    end
+    private_class_method other_utility_method
+  end
+
+  # fine if needed
+  module Utilities
+    module_function
 
     def parse_something(string)
       # do stuff here
@@ -2567,15 +2580,18 @@ no parameters.
     def other_utility_method(number, string)
       # do some more stuff
     end
+    private_class_method other_utility_method
   end
 
   # good
   module Utilities
-    module_function
+    extend self
 
     def parse_something(string)
       # do stuff here
     end
+
+    private
 
     def other_utility_method(number, string)
       # do some more stuff
