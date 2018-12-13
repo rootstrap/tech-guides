@@ -11,6 +11,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 * [Git Workflow](./git)
 * [Git commits](./git/commits.md)
 * [Open Source](./open_source.md)
+* [Pair Programming](./pair_programming.md)
 
 ### Languages
 
