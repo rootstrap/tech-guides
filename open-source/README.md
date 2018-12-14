@@ -20,3 +20,5 @@ Make sure to have:
 The items listed below are nice to have for the repository but aren't mandatory:
 - Add Changelog
 - Blocked main branch for force push
+
+For ruby specific details check [developing Gems](./developing_gems.md)
