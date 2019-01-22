@@ -352,6 +352,7 @@ In Python, single-quoted strings and double-quoted strings are the same. This PE
 
 For triple-quoted strings, always use double quote characters to be consistent with the docstring convention in [PEP 257](https://www.python.org/dev/peps/pep-0257).
 
+Here at rootstrap we prefer to use single-quoted strings over double quotes. 
 ## Whitespace in Expressions and Statements
 
 ### Pet Peeves
