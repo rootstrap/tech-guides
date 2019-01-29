@@ -273,10 +273,13 @@ Yes: import os
      import sys
 
 No:  import sys, os
-It's okay to say this though:
 ```
 
+It's okay to say this though:
+
+```python
 from subprocess import Popen, PIPE
+```
 
 * Imports are always put at the top of the file, just after any module comments and docstrings, and before module globals and constants.
 
