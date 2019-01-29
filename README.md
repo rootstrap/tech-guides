@@ -1,8 +1,8 @@
 Rootstrap Guides
 ======
 
-This repository contains several guidelines that document processes and standards followed by our entire organization. We hope they may serve as a recommendation to anyone interested in following our quality standards.  
-Guidelines are based on our own experiences and other companies' best practices.  
+This repository contains several guidelines that document processes and standards followed by our entire organization. We hope they may serve as a recommendation to anyone interested in following our quality standards.
+Guidelines are based on our own experiences and other companies' best practices.
 The guidelines exploit Git's advantages with regards to collaborative work, encouraging all of our developers to get actively involved with them.
 
 ### General
@@ -19,6 +19,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 * [Swift](./swift)
 * [Javascript](https://github.com/airbnb/javascript)
 * [CSS](./css.md)
+* [Python](./python)
 
 ### Frameworks/Libraries
 
