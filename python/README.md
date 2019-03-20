@@ -47,6 +47,7 @@ prescriptions for Python developmen that mostly applies for Django.
   * [Variable Annotations](#variable-annotations)
 * [References](#references)
 * [Naming standards for unit tests](#naming-standards-for-unit-tests)
+* [Virtualenv](#virtualenv)
 * [Copyright](#copyright)
 
 ## Introduction
@@ -1208,6 +1209,47 @@ assertEqual(-1, val)
 Vs.
 
 assertEqual(BAD_INITIALIZATION_CODE, ReturnCode, 'Method shold have returned a bad initialization code')
+
+## virtualenv
+
+Virtualenv is used to manage Python packages for different projects. Using virtualenv allows you to avoid installing Python packages globally which could break system tools or other projects. You can install virtualenv using pip.
+
+**Note**: if you are using Python 3.3 or newer the venv module is included in the Python standard library. This can also create and manage virtual environments, however, it only supports Python 3.
+
+### Verify if Virtualenv is installed
+There is a chance that virtualenv is already installed on your system. 
+
+Run the following command in your terminal
+```
+virtualenv --version
+```
+If you see a version number, it's already installed.
+
+### Create a virtual environment for a project
+On macOS and Linux:
+```
+virtualenv venv
+```
+Virtualenv will create a folder in the current directory which will contain python, pip, and basic libraries. The name of the virtual environment (in this case, it was venv) can be anything; omitting the name will place the files in the current directory instead.
+
+For especify which version Python (in case you have multiple versions of Python):
+```
+virtualenv -p python3 env # Creates a env with python3
+```
+
+### Activating a virtualenv
+Before you can start installing or using packages in your virtualenv you’ll need to activate it. Activating a virtualenv will put the virtualenv-specific python and pip executables into your shell’s PATH.
+
+On macOS and Linux:
+```
+source ./env/bin/activate
+```
+### Leaving the virtualenv
+If you want to switch projects or otherwise leave your virtualenv, simply run:
+```
+deactivate
+```
+If you want to re-enter the virtualenv just follow the same instructions above about activating a virtualenv. There’s no need to re-create the virtualenv.
 
 ##References
 
