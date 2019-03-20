@@ -46,6 +46,7 @@ prescriptions for Python developmen that mostly applies for Django.
   * [Function Annotations](#function-annotations)
   * [Variable Annotations](#variable-annotations)
 * [References](#references)
+* [Naming standards for unit tests](#naming-standards-for-unit-tests)
 * [Copyright](#copyright)
 
 ## Introduction
@@ -1101,6 +1102,112 @@ class Test:
 ```
 
 Although the PEP 526 is accepted for Python 3.6, the variable annotation syntax is the preferred syntax for stub files on all versions of Python (see [PEP 484](https://www.python.org/dev/peps/pep-0484) for details).
+
+## Naming standards for unit tests
+
+The basic naming of a test comprises of three main parts:
+
+ [UnitOfWork_StateUnderTest_ExpectedBehavior]
+
+A unit of work is a use case in the system that startes with a method and ends up with one of three types of results: a return value/exception, a state change to the system which changes its behavior, or a call to a third party (when we use mocks). So a unit of work can be a small as a method, or as large as a class, or even multiple classes, as long is it all runs in memory, and is fully under our control.
+
+**Examples**:
+
+```
+def test_sum_negative_number_as_1st_param_exception_thrown()
+
+def test_sum_negative_number_as_2nd_param_exception_thrown ()
+
+def test_sum_simple_values_calculated ()
+```
+
+###  Reasons:
+
+#### Test name should express a specific requirement
+
+Your unit test name should express a specific requirement. This requirement should be somehow derived from either a business requirement or a technical requirement. In any case, that requirement has been broken down into small enough pieces, each of which represents a test case. If your test is not representing a requirement, why are you writing it? Why is that code even there?
+
+Most developers don't bother too much with writing good assert messages in their tests. A good assert message (which shows up if the test fails) is the key to understanding what went wrong. Assuming writing good assert messages is one of the key places where most unit test developers fall short, the only thing left to save us then is the name of the test. 
+
+#### Test name should include the expected input or state and the expected result for that input or state
+
+To express the specific requirement clearly you should think about two things you need to express: the input values/current state during which the test takes place, and the expected result from that state.
+
+Example:
+
+Given this method:
+
+**def sum(a, b)**
+
+You have a requirement that numbers larger than 1000 that are passed in should not be considered for calculation (that is a number bigger than 1000 is equal to zero).
+
+**What about this name: test_sum_number_bigger_than_1000**
+
+That is only half way there. As a reader of the test I can only assume that some input in your test is bigger than 1000, but I do not understand what the requirement being tested is.
+
+**How about this name: test_sum_number_is_ignored**
+
+Still not good enough. While it does tell me the expected result, it does not tell me under which circumstances it needs to be ignored. I would have to go into the test code and read through it to find out what the expected input is.
+
+**How about this name: test_sum_number_ignored_if_bigger_than_1000**
+
+That is much better. I can tell just by looking at the test name what It means if the test fails. I don t need to look at the code, and I can tell exactly what requirement this test tries to solve.
+
+#### Test name should be presented as a statement or fact of life that expresses workflows and outputs
+
+Unit tests are just as much about documentation as they are about testing functionality. You should always assume that someone else is going to read your tests in a year, and that they should not have a hard time understanding your intent.
+
+People might first complain that the name of the test method appears way too long for them, but in the end it s more about readability. Longer test names do not imply longer or less optimized code, and even if they did, we are not looking to optimize test code performance. If anything, test code should always be optimized for readability.
+
+Here s an example of a bad and good test name
+
+test_sum_negative_number()
+
+And here s a better way to express your intent
+
+test_sum_negative_number_as_2nd_param_exception_thrown ()
+
+#### Test Name should only begin with Test if it is required by the testing framework or if it eases development and maintenance of the unit tests in some way.
+
+Since most tests today reside in a specific class or module that is logically defined as a test container, there are only a handful of reasons why you would want to prefix you test methods with the word Test :
+
+- Your unit testing framework requires this
+
+- You have coding standards in place and they include this
+
+#### Test name should include name of tested method or class
+
+You usually have at least a number of tests for each method you are testing, and you are usually testing a number of methods in one test container (since you usually have a test container per class tested). This leads to the requirement that your test should also reflect the name of the method begin tested, not only the requirements from it.
+
+For example:
+
+**MethodName_StateUnderTest_ExpectedBehavior**
+
+test_sum_negative_number_as_1st_param_exception_thrown()
+
+test_sum_negative_number_as_2nd_param_exception_thrown ()
+
+test_sum_simple_values_calculated ()
+
+test_parse_on_empty_string_exception_thrown()
+
+test_parse_single_token_returns_equal_toekn_value ()
+
+#### Naming Variables in a test:
+
+Variable names should express the expected input and state
+
+It s easy to name variables going into a method with generic names, but with unit tests you have to be twice as careful to name them as what they represent, i.e. BAD_DATA or EMPTY_ARRAY or NON_INITIALIZED_PERSON
+
+A good way to check if your names are good enough is to look at the ASSERT at the end of the test method. If the ASSERT line is expressing what your requirement is, or comes close, you re probably there.
+
+For example:
+
+assertEqual(-1, val)
+
+Vs.
+
+assertEqual(BAD_INITIALIZATION_CODE, ReturnCode, 'Method shold have returned a bad initialization code')
 
 ##References
 
