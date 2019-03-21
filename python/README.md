@@ -350,13 +350,14 @@ import os
 import sys
 ```
 
-##String Quotes
+## String Quotes
 
 In Python, single-quoted strings and double-quoted strings are the same. This PEP does not make a recommendation for this. Pick a rule and stick to it. When a string contains single or double quote characters, however, use the other one to avoid backslashes in the string. It improves readability.
 
 For triple-quoted strings, always use double quote characters to be consistent with the docstring convention in [PEP 257](https://www.python.org/dev/peps/pep-0257).
 
-Here at Rootstrap we prefer to use single-quoted strings over double quotes. 
+Here at Rootstrap we prefer to use single-quoted strings over double quotes.
+For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method
 
 ## Whitespace in Expressions and Statements
 
