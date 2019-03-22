@@ -1234,7 +1234,7 @@ Virtualenv will create a folder in the current directory which will contain pyth
 
 For especify which version Python (in case you have multiple versions of Python):
 ```
-virtualenv -p python3 env # Creates a env with python3
+virtualenv -p python3 <env> # Creates a new virtualenv with name env and python3
 ```
 
 ### Activating a virtualenv
@@ -1242,7 +1242,7 @@ Before you can start installing or using packages in your virtualenv you’ll ne
 
 On macOS and Linux:
 ```
-source ./env/bin/activate
+source ./<env>/bin/activate
 ```
 ### Leaving the virtualenv
 If you want to switch projects or otherwise leave your virtualenv, simply run:
@@ -1251,7 +1251,33 @@ deactivate
 ```
 If you want to re-enter the virtualenv just follow the same instructions above about activating a virtualenv. There’s no need to re-create the virtualenv.
 
-##References
+### VirtualenvWrapper
+Even tough is not mandatory, there is a wrapper that sets some defaults about virtualenv use.
+You can install it with pip following this instructions.
+```
+$ pip install virtualenvwrapper
+```
+Then you should add the following lines to your .profile or .bashrc:
+```
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3; # This is to avoid specifiying the python version every time.
+export WORKON_HOME=$HOME/.virtualenvs                   # in Linux Python 3 should be the default and this line  
+export PROJECT_HOME=$HOME/Devel                         # should not be necesary anymore.
+source /usr/local/bin/virtualenvwrapper.sh
+```
+This will give you a couple of handful commands for virtualenv management.
+Then you should be able to create the .virtualenvs folder and you should be able to create virtualenvs with:
+```
+$ mvkvirtualenv <env>
+```
+and switch between virtualenvs with:
+```
+$ workon <env>
+```
+for further reading you can cosult the docs.
+https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
+
+
+## References
 
 [1] [PEP 7](https://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
 [2] Barry's GNU Mailman style guide http://barry.warsaw.us/software/STYLEGUIDE.txt
@@ -1260,7 +1286,7 @@ If you want to re-enter the virtualenv just follow the same instructions above a
 [5] Typeshed repo https://github.com/python/typeshed
 [6] Suggested syntax for Python 2.7 and straddling code https://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code
 
-##Copyright
+## Copyright
 
 This document has been placed in the public domain.
 
