@@ -1252,28 +1252,58 @@ deactivate
 If you want to re-enter the virtualenv just follow the same instructions above about activating a virtualenv. There’s no need to re-create the virtualenv.
 
 ### VirtualenvWrapper
-Even tough is not mandatory, there is a wrapper that sets some defaults about virtualenv use.
+
+Virtualenvwrapper is a set of extensions to virtualenv tool.
+The extensions include wrappers for creating and deleting virtual environments and otherwise managing your development workflow, making it easier to work on more than one project at a time without introducing conflicts in their dependencies.
+Features:
+- Organizes all of your virtual environments in one place.
+- Wrappers for managing your virtual environments (create, delete, copy).
+- Use a single command to switch between environments.
+- Tab completion for commands that take a virtual environment as argument.
+
+##### NOTE:
+virtualenvwrapper is a system tool so it should be installed system wide or at least user wide.
+Do not try to install virtualenvwrapper iside a virtualenv because it will not work outside of such env if it works at all
+
+Even tough this is not mandatory, this sets some defaults about virtualenv use.
 You can install it with pip following this instructions.
 ```
 $ pip install virtualenvwrapper
 ```
-Then you should add the following lines to your .profile or .bashrc:
+Then you should add the following lines to your .profile / .bashrc or bash_profile:
 ```
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3; # This is to avoid specifiying the python version every time.
 export WORKON_HOME=$HOME/.virtualenvs                   # in Linux Python 3 should be the default and this line  
 export PROJECT_HOME=$HOME/Devel                         # should not be necesary anymore.
 source /usr/local/bin/virtualenvwrapper.sh
 ```
+After that create the virtualenv folder with:
+```
+mkdir $HOME/.virtualenvs
+```
+
+
 This will give you a couple of handful commands for virtualenv management.
-Then you should be able to create the .virtualenvs folder and you should be able to create virtualenvs with:
+Then you should be able to make full use of virtualenv capabilities,
+Here are some of the most common commands:
+
+Create a virtualenv:
 ```
 $ mvkvirtualenv <env>
 ```
-and switch between virtualenvs with:
+Select a virtualenv to work:
 ```
 $ workon <env>
 ```
-for further reading you can cosult the docs.
+List the available virtualenvs:
+```
+$ lsvirtualenv
+```
+Add some directories to the current path of the active virtualenv:
+```
+$ add2virtualenv <dir1> [dir2, dir3, ...]
+```
+for further reading you can consult the docs.
 https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
 
