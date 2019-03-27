@@ -351,13 +351,14 @@ import os
 import sys
 ```
 
-##String Quotes
+## String Quotes
 
 In Python, single-quoted strings and double-quoted strings are the same. This PEP does not make a recommendation for this. Pick a rule and stick to it. When a string contains single or double quote characters, however, use the other one to avoid backslashes in the string. It improves readability.
 
 For triple-quoted strings, always use double quote characters to be consistent with the docstring convention in [PEP 257](https://www.python.org/dev/peps/pep-0257).
 
-Here at Rootstrap we prefer to use single-quoted strings over double quotes. 
+Here at Rootstrap we prefer to use single-quoted strings over double quotes.
+For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method
 
 ## Whitespace in Expressions and Statements
 
@@ -1234,7 +1235,7 @@ Virtualenv will create a folder in the current directory which will contain pyth
 
 For especify which version Python (in case you have multiple versions of Python):
 ```
-virtualenv -p python3 env # Creates a env with python3
+virtualenv -p python3 <env> # Creates a new virtualenv with name env and python3
 ```
 
 ### Activating a virtualenv
@@ -1242,7 +1243,7 @@ Before you can start installing or using packages in your virtualenv you’ll ne
 
 On macOS and Linux:
 ```
-source ./env/bin/activate
+source ./<env>/bin/activate
 ```
 ### Leaving the virtualenv
 If you want to switch projects or otherwise leave your virtualenv, simply run:
@@ -1250,6 +1251,61 @@ If you want to switch projects or otherwise leave your virtualenv, simply run:
 deactivate
 ```
 If you want to re-enter the virtualenv just follow the same instructions above about activating a virtualenv. There’s no need to re-create the virtualenv.
+
+### VirtualenvWrapper
+
+Virtualenvwrapper is a set of extensions to virtualenv tool.
+The extensions include wrappers for creating and deleting virtual environments and otherwise managing your development workflow, making it easier to work on more than one project at a time without introducing conflicts in their dependencies.
+Features:
+- Organizes all of your virtual environments in one place.
+- Wrappers for managing your virtual environments (create, delete, copy).
+- Use a single command to switch between environments.
+- Tab completion for commands that take a virtual environment as argument.
+
+##### NOTE:
+virtualenvwrapper is a system tool so it should be installed system wide or at least user wide.
+Do not try to install virtualenvwrapper iside a virtualenv because it will not work outside of such env if it works at all
+
+Even tough this is not mandatory, this sets some defaults about virtualenv use.
+You can install it with pip following this instructions.
+```
+$ pip install virtualenvwrapper
+```
+Then you should add the following lines to your .profile / .bashrc or bash_profile:
+```
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3; # This is to avoid specifiying the python version every time.
+export WORKON_HOME=$HOME/.virtualenvs                   # in Linux Python 3 should be the default and this line  
+export PROJECT_HOME=$HOME/Devel                         # should not be necesary anymore.
+source /usr/local/bin/virtualenvwrapper.sh
+```
+After that create the virtualenv folder with:
+```
+mkdir $HOME/.virtualenvs
+```
+
+
+This will give you a couple of handful commands for virtualenv management.
+Then you should be able to make full use of virtualenv capabilities,
+Here are some of the most common commands:
+
+Create a virtualenv:
+```
+$ mvkvirtualenv <env>
+```
+Select a virtualenv to work:
+```
+$ workon <env>
+```
+List the available virtualenvs:
+```
+$ lsvirtualenv
+```
+Add some directories to the current path of the active virtualenv:
+```
+$ add2virtualenv <dir1> [dir2, dir3, ...]
+```
+for further reading you can consult the docs.
+https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
 # Django
 Here we describe some general criteria that we follow for django projects
@@ -1297,6 +1353,7 @@ project_name
 |   |__util_2.py
 ...
 ```
+
 ## References
 
 [1] [PEP 7](https://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
