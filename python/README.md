@@ -1251,7 +1251,53 @@ deactivate
 ```
 If you want to re-enter the virtualenv just follow the same instructions above about activating a virtualenv. There’s no need to re-create the virtualenv.
 
-##References
+# Django
+Here we describe some general criteria that we follow for django projects
+- Use generic APIViews for api developement (Mapping HTTP methods and not viewsets)
+- If you need some custom functionality add a function and decorate with: ```@require_http_methods([Method list])```
+
+## Suggested project scaffolding
+
+This is the suggested scaffolding pfor a django project.
+```
+project_name
+|
+|__project_name(Here you should put all the settings for the app)
+|    |__settings.py
+|    |__wsgi.py(optional)
+|    |__asgi.py(optional)
+|    |__urls.py
+|    ...
+|
+|__templates "Here are general templates, will be loaded last in the application"
+|
+|__applications
+|   |__app1
+|    ... |__models.py(Split to folder and import models in __init__ if neccesary)
+|        |__views.py
+|        |__serializers.py
+|        |__urls.py
+|        |__test
+|        | |__requests
+|        |    |__model_name_1
+|        |    ... |__test_create
+|        |        |__test_update
+|        |        |__test_retrieve
+|        |        |__test_delete
+|        |        |__test_custom_functionality(optional)
+|        |        ...
+|        |
+|        |__templates(Optional and not present if the project is api only)
+|        |
+|        |__api.py(Optional and not present if project is api only)
+|        ... (if needed add more files)
+|
+|__utils
+|   |__util_1.py
+|   |__util_2.py
+...
+```
+## References
 
 [1] [PEP 7](https://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
 [2] Barry's GNU Mailman style guide http://barry.warsaw.us/software/STYLEGUIDE.txt
@@ -1260,7 +1306,7 @@ If you want to re-enter the virtualenv just follow the same instructions above a
 [5] Typeshed repo https://github.com/python/typeshed
 [6] Suggested syntax for Python 2.7 and straddling code https://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code
 
-##Copyright
+## Copyright
 
 This document has been placed in the public domain.
 
