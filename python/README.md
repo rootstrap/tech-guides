@@ -1307,6 +1307,52 @@ $ add2virtualenv <dir1> [dir2, dir3, ...]
 for further reading you can consult the docs.
 https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
+# Django
+Here we describe some general criteria that we follow for django projects
+- Use generic APIViews for api developement (Mapping HTTP methods and not viewsets)
+- If you need some custom functionality add a function and decorate with: ```@require_http_methods([Method list])```
+
+## Suggested project scaffolding
+
+This is the suggested scaffolding pfor a django project.
+```
+project_name
+|
+|__project_name(Here you should put all the settings for the app)
+|    |__settings.py
+|    |__wsgi.py(optional)
+|    |__asgi.py(optional)
+|    |__urls.py
+|    ...
+|
+|__templates "Here are general templates, will be loaded last in the application"
+|
+|__applications
+|   |__app1
+|    ... |__models.py(Split to folder and import models in __init__ if neccesary)
+|        |__views.py
+|        |__serializers.py
+|        |__urls.py
+|        |__test
+|        | |__requests
+|        |    |__model_name_1
+|        |    ... |__test_create
+|        |        |__test_update
+|        |        |__test_retrieve
+|        |        |__test_delete
+|        |        |__test_custom_functionality(optional)
+|        |        ...
+|        |
+|        |__templates(Optional and not present if the project is api only)
+|        |
+|        |__api.py(Optional and not present if project is api only)
+|        ... (if needed add more files)
+|
+|__utils
+|   |__util_1.py
+|   |__util_2.py
+...
+```
 
 ## References
 
