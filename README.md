@@ -12,6 +12,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 * [Git commits](./git/commits.md)
 * [Open Source](./open-source/README.md)
 * [Pair Programming](./pair_programming.md)
+* [Opening a Pull Request](./pull-request/README.md)
 
 ### Languages
 
