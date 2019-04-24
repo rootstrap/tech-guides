@@ -7,6 +7,7 @@
     
     For example, we get this User Story: "As a user, I want to be able log in to the app." 
     This User Story can be implemented in different PRs to facilitate review, as follows:
+    
         - "As a user, I want to be able to enter my email and password into a log in form and hit the submit button"
         - "As a user I should see errors if the email or password I entered are incorrect"
         - "As a user I should be logged in to the system if I entered correct email and password"
