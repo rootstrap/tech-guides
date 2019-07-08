@@ -7,8 +7,9 @@ Think in your PR as something you are selling to your fellow developers, you the
       **User Stories/Features:**
       
       The maximum scope of a PR should be a complete User Story.
-            However, sometimes a single User Story may result in too many changes in the code base making your PR too         difficult to review and once reviewed, too difficult to address all the comments you received.  
-           In this cases a better approach is to break the User Story even further.
+            However, sometimes a single User Story may result in too many changes in the code base making your PR too         
+            difficult to review and once reviewed, too difficult to address all the comments you received. So if your PR is going to be bigger than 400 lines (for most techs), or whatever is the maximum allowed in the  tech you're working,
+            a better approach is to break the User Story even further.
     
       For example, we get this User Story: "As a user, I want to be able log in to the app." 
       This User Story can be implemented in different PRs to facilitate review, as follows:
