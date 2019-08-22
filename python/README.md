@@ -1314,12 +1314,19 @@ Here we describe some general criteria that we follow for django projects
 
 ## Suggested project scaffolding
 
-This is the suggested scaffolding pfor a django project.
+This is the suggested scaffolding for a django project.
 ```
 project_name
 |
 |__project_name(Here you should put all the settings for the app)
-|    |__settings.py
+|    |__ __init__.py
+|    |__settings
+|          |__ __init__.py
+|          |__ base.py
+|          |__ development.py
+|          |__ staging.py
+|          |__ production.py
+|          ...
 |    |__wsgi.py(optional)
 |    |__asgi.py(optional)
 |    |__urls.py
@@ -1328,6 +1335,7 @@ project_name
 |__templates "Here are general templates, will be loaded last in the application"
 |
 |__applications
+|   |__ __init__.py
 |   |__app1
 |    ... |__models.py(Split to folder and import models in __init__ if neccesary)
 |        |__views.py
