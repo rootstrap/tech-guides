@@ -1334,6 +1334,11 @@ project_name
 |
 |__templates "Here are general templates, will be loaded last in the application"
 |
+|__api
+|  |__ __init__.py
+|  ...
+|  |__ urls.py (Use this file in order to route the apps located under the applications folder)
+|
 |__applications
 |   |__ __init__.py
 |   |__app1
