@@ -121,7 +121,7 @@ This section’s purpose is explaining branch management after releasing to prod
 
 All the previously mentioned branches must be used in the same way they were used before release, except for those branches which are explained again under this section.
 
-The main purpose is to keep commits history as much as possible. As a consequence, classical approaches based on *cherry-pick* and *merge* to keep branches up to date are replaced for the use of *rebase*.
+The main purpose is to keep commits history as clean as possible. As a consequence, classical approaches based on *cherry-pick* and *merge* to keep branches up to date are replaced for the use of *rebase*.
 
 ### Master branch (master) **[Required]**
 
@@ -140,7 +140,7 @@ It should be deployed in a testing environment (commonly staging) accessible to 
 The timing in which this branch should be created depends on the project and the team. In projects with big teams is convenient to create it when the development of the first feature in the version starts. However, when teams are small it is better to create it once all the features to be released are completed. This is the most common scenario in the company.
 
 * **Origin:** develop
-* **Destination:** master
+* **Destination:** master and develop
 * **Use case:** Merge feedback or fixes to code that were released to a testing environment. If there are bugs to fix or feedback to include after the branch has been released to a testing environment, they should be merged to this branch and not to *develop.* In this way, we avoid releasing future features that belong to a different release and were merged to *develop* by another developer in the team. Furthermore, it allows us to keep track of features we will release next.
 
 #### **Integration of a Release branch to master and develop**
@@ -152,17 +152,7 @@ Once the release branch is ready to go to production it should be included in ma
 It is directly included in **master** through a Pull Request created from master. Ideally, every commit in that PR passed through a code review process, consequently, another code review is unnecessary to merge it, the developer should just check everything is correct.
 
 **Develop**
-
-A release branch can have commits that are not part of develop, for example, feedback or fixes.
-
-In order to keep **develop** up to date, a rebase with *origin master* is compulsory and then there should be a push to develop from your develop local branch.
-
-Steps with the correct commands:
-
-1. `git checkout develop`
-2. `git pull origin develop:develop`, used to update our local branch with *origin/develop.*
-3. `git rebase origin/master` used to update the history with all the commits from master that are not in *develop.*
-4. `git push origin develop:develop` used to update origin/develop.
+It is directly included in **develop** through a Pull Request created from the release branch. Everything said for the master branch applies here too.
 
 ### Feedback branch (feedback/x)
 
@@ -178,16 +168,16 @@ _Example: feedback/sign-up-change-inputs-order_
 
 This branch is created to solve bugs or critical changes that should not be mixed with the current development (*develop branch*).
 
-Development bugs should not be confused with these bugs, development bugs should be merged to *develop or a release branch.* Not every bug is a hotfix, a hotfix is a critical bug that affects directly an essential functionality in the system.
+Development bugs should not be confused with these bugs, development bugs should be merged to *develop or a release branch.* Not every bug deserves a hotfix, a hotfix aims to solve a critical bug that directly affects essential system functionality.
 
-It is the **developer's responsibility** to reflect that hotfix in develop **immediately** after the Pull Request is merged to master. In order to do that, the developer must follow the steps detailed in **Integration of a Release branch to master and develop** section.
+It is the **developer's responsibility** to reflect that hotfix in develop by also submitting a Pull Request from this branch.
 
 * **Origin:** master
-* **Destination:** master
+* **Destination:** master and develop
 * **Use case:** Critical changes that affect the expected behaviour of the application in production
 
 <p align="center">
-  <img src="hotfix-branch.jpg" width="420px" height="560px"/>
+  <img src="hotfix-branch.png" width="600px" height="600px"/>
 </p>
 
 
@@ -212,7 +202,7 @@ Once the sprint is finished and feedback from the client was included, a release
 * **Origin:** develop
 * **Versión:** v0.x, x being the current sprint number.
 * **Title:** Release sprint x, x being the current sprint number.
-* **Descripción:** should contain a list with all the features developed during the sprint.
+* **Description:** should contain a list with all the features developed during the sprint.
 
 _Note: version management before releasing to production is highly recommended but not mandatory._
 
