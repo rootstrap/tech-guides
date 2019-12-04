@@ -534,7 +534,7 @@ Without "run" the code looks like:
 dog.jump()
 dog.sit()
 dog.eat()
-val resutl = dog.sleep()
+val result = dog.sleep()
 ```
 
 #### let
@@ -549,7 +549,7 @@ dog.let {
 ```
 
 #### apply
-Receive 'this' as an instance fo the current context, return the object context, should
+Receive 'this' as an instance of the current context, return the object context, should
 be used to change context data:
 
 ```
