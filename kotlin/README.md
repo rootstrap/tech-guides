@@ -29,7 +29,7 @@ supposed to help risks not getting used at all&mdash;no matter how good it is.
 * [Conditional statements](#using-conditional-statements)
   * [if versus when](#if-versus-when)
 * [Extension functions](#using-extension-functions)
-* [Scope functions](#Using-scope-functions-apply/with/run/also/let)
+* [Scope functions](#scope-functions)
   * [run](#run)
   * [let](#let)
   * [apply](#apply)
@@ -78,9 +78,9 @@ class MyTestCase {
 ```
 
 ### Property names:
-Names of constants (properties marked with const, or top-level or object val 
+Names of constants (properties marked with const, top-level or object val 
 properties with no custom get the function that holds deeply immutable data) 
-should use uppercase underscore separated names: 
+should use uppercase snake case: 
 
 ```
 const val MAX_COUNT = 8 
@@ -101,7 +101,7 @@ naming style as object declarations:
 val PersonComparator: Comparator = /*...*/ 
 ```
 
-For enum constants, it's OK to use either uppercase underscore-separated names
+For enum constants, it's OK to use either uppercase snake case
 ( enum class Color { RED, GREEN } ) or regular camel-case names starting with 
 an uppercase first letter, depending on the usage.
 
@@ -122,7 +122,7 @@ if (elements != null) {
 Put spaces around binary operators ( a + b ). 
 Exception: don't put spaces around the "range to" operator ( 0..i ). 
 Do not put spaces around unary operators ( a++ ) 
-Put spaces between control Oow keywords ( if , when , for and while ) and the 
+Put spaces between control how keywords ( if , when , for and while ) and the 
 corresponding opening parenthesis. Do not put a space before an opening parenthesis
 in a primary constructor declaration, method declaration or method call. 
 
@@ -133,9 +133,11 @@ fun bar() { foo(1) }
 ```
 
 Never put a space after ( , [ , or before ] , ) . 
-Never put a space around . or ?. : foo.bar().filter { it > 2 }.joinToString() , foo?.bar()
+Never put a space around . or ?. : foo.bar().filter { it > 2 
+}.joinToString() , foo?.bar()
 Put a space after // : // This is a comment
-Do not put spaces around angle brackets used to specify type parameters: class Map { ... }
+Do not put spaces around angle brackets used to specify type 
+parameters: class Map { ... }
 Do not put spaces around :: : Foo::class , String::length 
 Do not put a space before ? used to mark a nullable type: String? 
 
@@ -507,12 +509,11 @@ To minimize API pollution, restrict the visibility of extension functions as muc
 makes sense. As necessary, use local extension functions, member extension functions, 
 or top-level extension functions with private visibility.
 
-### Using scope functions apply/with/run/also/let:
+### Scope functions
 Kotlin provides a variety of functions to execute a block of code in the context of a 
-given object: let, run, with, apply, and also. You should be used the scope functions 
-depending on your needs, there is not a specific rule for each one, they are used in 
-order to have a clean and easy to maintain code, and since Kotlin is a compiled language
-with the use of those functions you can get better performance of your apps.
+given object: let, run, with, apply, and also. There is not a specific rule for each one, 
+they are used in order to have a clean and easy to maintain code, and since Kotlin is a 
+compiled language with the use of those functions you can get better performance of your apps.
 
 #### run
 Receive 'this' as an instance of the current context and return a final value, should be 
@@ -521,10 +522,10 @@ used to execute actions over the same context.
 ```
 val dog = Dog()
 val result = dog.run { //this as instance of the object dog
-	  jump() // same as dog.jump() also you can use this.jump()
-	  sit()
- 	  eat()
-	  sleep() // the final return value
+    jump() // same as dog.jump() also you can use this.jump()	
+    sit()
+    eat()
+    sleep() // the final return value
 }
 ```
 
@@ -538,8 +539,8 @@ val result = dog.sleep()
 ```
 
 #### let
-Receive 'it' as an instance of the current object and return a final value, should be 
-used to use the object context several times.
+Receive 'it' as an instance of the current object and return a final value, 
+should be used to use the object context several times.
 
 ```
 dog.let { 
@@ -549,8 +550,8 @@ dog.let {
 ```
 
 #### apply
-Receive 'this' as an instance of the current context, return the object context, should
-be used to change context data:
+Receive 'this' as an instance of the current context, return the object context, 
+should be used to change context data:
 
 ```
 dog.apply {
@@ -561,12 +562,15 @@ dog.apply {
 ```
 
 #### also
-Receive 'it' as an instance of the object, return the same context as result, should be 
-used to execute a code after a creation of the object or parameters assignations:
+Receive 'it' as an instance of the object, return the same context as result, 
+should be used to execute a code after a creation of the object or parameters 
+assignations:
 
+```
 val dog = Dog().also {
-	selectedDog = it 
+    selectedDog = it 
 }
+```
 
 Also, you can combine with 'apply':
 
@@ -581,8 +585,8 @@ dog.apply {
 ```
 
 #### with
-Similar to let, but using 'this' as context, should be used if you know the object is 
-not null for example:
+Similar to let, but using 'this' as context, should be used if you know the 
+object is not null for example:
 
 ```
 val dog = Dog()
@@ -592,7 +596,7 @@ with(dog) {
 }
 ```
 
-But if you need to check the object nullability you should be used 'let' as instance of with:
+But if you need to check the object nullability you should use 'let':
 
 ```
 dog?.let {
@@ -601,12 +605,12 @@ dog?.let {
 ```
 
 #### Combining scope functions
-Imagine you have two objects and you need to use a scope function inside another, you 
-need to specify the name of the context to avoid context overlapping.
+Imagine you have two objects and you need to use a scope function inside another, 
+you need to specify the name of the context to avoid context overlapping.
 
 ```
 dog1.let { // it as instance of dog1
- 	  dog2.let { d2 -> // you have to rename the context for dog2
+    dog2.let { d2 -> // you have to rename the context for dog2
         it.isBrotherOf(d2) //it stell an instance of dog1
         doSomething(arrayListOf(it,d2))
     }
