@@ -48,8 +48,8 @@ file accordingly. Use the camel case with an uppercase first letter (for example
 ProcessDeclarations.kt )
 
 ### Function names:
-Names of functions, properties, and local variables start with a lower case letter 
-and use the camel case and no underscores: 
+Names of functions, properties, and local variables start with a lower case 
+letter and use the camel case and no underscores: 
 
 ```
 fun processDeclarations() { /*...*/ } 
@@ -196,8 +196,8 @@ class Person(
     KotlinMaker { /*...*/ }
 ```
 
-For classes with a long supertype list, put a line break after the colon and align all
-supertype names horizontally:
+For classes with a long supertype list, put a line break after the colon and 
+align all supertype names horizontally:
 
 ```
 class MyFavouriteVeryLongClassHolder :
@@ -226,8 +226,8 @@ class MyFavouriteVeryLongClassHolder :
 Use regular indent (4 spaces) for constructor parameters.
 
 ### Annotation formatting:
-Annotations are typically placed on separate lines, before the declaration to which they 
-are attached, and with the same indentation:
+Annotations are typically placed on separate lines, before the declaration to 
+which they are attached, and with the same indentation:
 
 ```
 @Target(AnnotationTarget.PROPERTY) 
@@ -477,22 +477,21 @@ when(x) {
 ```
 
 #### if versus when
-Prefer using if for binary conditions instead of when . Instead of
+Prefer using 'if' for binary conditions instead of 'when'. 
 
+Instead of
 ```
 when (x) { 
     y -> // ... 
     else -> // ... 
 }
 ```
-
 use
-
 ```
 if (x == y) ... else …
 ```
 
-Prefer using when if there are three or more options.
+Prefer using 'when' if there are three or more options.
 
 Loops on ranges:
 Use the until function to loop over an open range:
@@ -509,7 +508,7 @@ To minimize API pollution, restrict the visibility of extension functions as muc
 makes sense. As necessary, use local extension functions, member extension functions, 
 or top-level extension functions with private visibility.
 
-### Scope functions
+### Scope functions:
 Kotlin provides a variety of functions to execute a block of code in the context of a 
 given object: let, run, with, apply, and also. There is not a specific rule for each one, 
 they are used in order to have a clean and easy to maintain code, and since Kotlin is a 
