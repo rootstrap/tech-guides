@@ -27,7 +27,6 @@ supposed to help risks not getting used at all&mdash;no matter how good it is.
 * [Documentation/comments](#documentation-comments)
 * [Type aliases](#type-aliases)
 * [Conditional statements](#using-conditional-statements)
-  * [if versus when](#if-versus-when)
 * [Extension functions](#using-extension-functions)
 * [Scope functions](#scope-functions)
   * [run](#run)
@@ -79,8 +78,7 @@ class MyTestCase {
 
 ### Property names:
 Names of constants (properties marked with const, top-level or object val 
-properties with no custom get the function that holds deeply immutable data) 
-should use uppercase snake case: 
+properties with no custom get) should use uppercase snake case: 
 
 ```
 const val MAX_COUNT = 8 
@@ -122,7 +120,7 @@ if (elements != null) {
 Put spaces around binary operators ( a + b ). 
 Exception: don't put spaces around the "range to" operator ( 0..i ). 
 Do not put spaces around unary operators ( a++ ) 
-Put spaces between control how keywords ( if , when , for and while ) and the 
+Put spaces between control keywords ( if , when , for and while ) and the 
 corresponding opening parenthesis. Do not put a space before an opening parenthesis
 in a primary constructor declaration, method declaration or method call. 
 
@@ -132,33 +130,34 @@ fun foo(x: Int) { ... }
 fun bar() { foo(1) } 
 ```
 
-Never put a space after ( , [ , or before ] , ) . 
-Never put a space around . or ?. : foo.bar().filter { it > 2 
-}.joinToString() , foo?.bar()
-Put a space after // : // This is a comment
-Do not put spaces around angle brackets used to specify type 
-parameters: class Map { ... }
-Do not put spaces around :: : Foo::class , String::length 
-Do not put a space before ? used to mark a nullable type: String? 
+- Never put a space after '(', ',', '[' , or before ']' , ')' 
+- Never put a space around '.' or '?.' : 
+    foo.bar().filter { it > 2 }.joinToString() , foo?.bar()
+- Put a space after '//' : 
+    // This is a comment
+- Do not put spaces around angle brackets used to specify type parameters: 
+    class Map { ... }
+- Do not put spaces around '::' : 
+    Foo::class , String::length 
+- Do not put a space before ? used to mark a nullable type: 
+    String? 
 
 ### Colon
-Put a space before : in the following cases: 
-when it's used to separate a type and a supertype; 
-when delegating to a superclass constructor or a different constructor of the 
-same class;
-after the object keyword. 
-
-Don't put a space before  :  when it separates a declaration and its type. 
-Always put a space after : . 
+Put a space before ':' in the following cases: 
+    - when it's used to separate a type and a supertype.
+    - when delegating to a superclass constructor or a different constructor of the 
+        same class.
+    - After the object keyword. 
+    - Don't put a space before  ':'  when it separates a declaration and its type. 
+    - Always put a space after ':' . 
 
 ```
 abstract class Foo : IFoo { 
     abstract fun foo(a: Int): T 
-} 
+}
 
 class FooImpl : Foo() { 
     constructor(x: String) : this(x) { /*...*/ } 
-
     val x = object : IFoo { /*...*/ } 
 }
 ```
@@ -344,11 +343,11 @@ from adjacent case blocks with a blank line:
 
 ```
 private fun parsePropertyValue(propName: String, token: Token) {
-	  when (token) {
-		    is Token.ValueToken ->
-			  callback.visitValue(propName, token.value)
-		
-		    Token.LBRACE -> { // …
+    when (token) {
+        is Token.ValueToken ->
+    	    callback.visitValue(propName, token.value)	
+        Token.LBRACE -> { 
+            // …
         }
     }
 }
@@ -406,7 +405,7 @@ appendCommaSeparated(properties) {
 }
 ```
 
-If the parameter list is too long to Dt on a line, put the arrow on a separate line:
+If the parameter list is too long to fit on a line, put the arrow on a separate line:
 
 ```
 foo { 
@@ -476,24 +475,7 @@ when(x) {
 }
 ```
 
-#### if versus when
-Prefer using 'if' for binary conditions instead of 'when'. 
-
-Instead of
-```
-when (x) { 
-    y -> // ... 
-    else -> // ... 
-}
-```
-use
-```
-if (x == y) ... else …
-```
-
-Prefer using 'when' if there are three or more options.
-
-Loops on ranges:
+### Loops on ranges:
 Use the until function to loop over an open range:
 
 ```
@@ -511,8 +493,8 @@ or top-level extension functions with private visibility.
 ### Scope functions:
 Kotlin provides a variety of functions to execute a block of code in the context of a 
 given object: let, run, with, apply, and also. There is not a specific rule for each one, 
-they are used in order to have a clean and easy to maintain code, and since Kotlin is a 
-compiled language with the use of those functions you can get better performance of your apps.
+you use them to have clean and easy to maintain code, and since Kotlin is a compiled 
+language, with the use of those functions, you can get better performance of your apps.
 
 #### run
 Receive 'this' as an instance of the current context and return a final value, should be 
@@ -538,8 +520,8 @@ val result = dog.sleep()
 ```
 
 #### let
-Receive 'it' as an instance of the current object and return a final value, 
-should be used to use the object context several times.
+Receive 'it' as an instance of the current object and return a final value.
+It should be used to use the object context several times.
 
 ```
 dog.let { 
@@ -549,8 +531,8 @@ dog.let {
 ```
 
 #### apply
-Receive 'this' as an instance of the current context, return the object context, 
-should be used to change context data:
+Receives 'this' as an instance of the current context and return the object context.
+It should be used to change context data:
 
 ```
 dog.apply {
@@ -561,8 +543,8 @@ dog.apply {
 ```
 
 #### also
-Receive 'it' as an instance of the object, return the same context as result, 
-should be used to execute a code after a creation of the object or parameters 
+Receive 'it' as an instance of the object and return the same context as result.
+It should be used to execute a code after a creation of the object or parameters 
 assignations:
 
 ```
@@ -571,7 +553,7 @@ val dog = Dog().also {
 }
 ```
 
-Also, you can combine with 'apply':
+- also can be combined with apply:
 
 ```
 dog.apply {
@@ -584,8 +566,8 @@ dog.apply {
 ```
 
 #### with
-Similar to let, but using 'this' as context, should be used if you know the 
-object is not null for example:
+Similar to let, but using 'this' as context. It should be used if you know the 
+object is not null:
 
 ```
 val dog = Dog()
