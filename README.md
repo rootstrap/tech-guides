@@ -31,6 +31,8 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 * [React](https://github.com/airbnb/javascript/tree/master/react)
 * [RSpec](./ruby/rspec/README.md)
 
+### Hosting Platforms
+ * [Heroku](./infrastructure/Heroku.md)
 
 If you disagree with a guideline, open an issue on the guides repo rather than
 debating it within the code review. In the meantime, apply the guideline.
