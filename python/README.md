@@ -27,7 +27,7 @@ prescriptions for Python developmen that mostly applies for Django.
   * [Documentation Strings](#documentation-strings)
   * [Naming Conventions](#naming-conventions)
   * [Overriding Principle](#overriding-principle)
-  * [Descriptive: Naming Styles](#descriptive:-naming-style)
+  * [Descriptive: Naming Styles](#descriptive:-naming-styles)
     * [Prescriptive: Naming Conventions](#prescriptive:-naming-conventions)
     * [Names to Avoid](#names-to-avoid)
     * [ASCII Compatibility](#ascii-compatibility)
@@ -177,8 +177,8 @@ result = some_function_that_takes_arguments(
     'd', 'e', 'f',
 )
 ```
-### Tabs or Spaces?
 
+### Tabs or Spaces?
 Spaces are the preferred indentation method.
 
 Tabs should be used solely to remain consistent with code that is already indented with tabs.
@@ -191,9 +191,13 @@ When invoking the Python 2 command line interpreter with the -t option, it issue
 
 ### Maximum Line Length
 
-Limit all lines to a maximum of 79 characters.
+Limit all lines to a maximum of 119 characters for Django projects and 79 for python projects in general.
 
-For flowing long blocks of text with fewer structural restrictions (docstrings or comments), the line length should be limited to 72 characters.
+Usually Django lines are longer due to queries and urls that need to be placed entirely on a line and for that reason in
+those projects a longer line length is preferred.
+Keep in mind tough that if you want to open source a project later, shortening the line length is advisable.
+
+For flowing long blocks of text with fewer structural restrictions (docstrings or comments), the line length should be limited to 80 characters.
 
 Limiting the required editor window width makes it possible to have several files open side-by-side, and works well when using code review tools that present the two versions in adjacent columns.
 
