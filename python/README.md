@@ -89,8 +89,10 @@ Yes:
 
 ```python
 # Aligned with opening delimiter.
-foo = long_function_name(var_one, var_two,
-                         var_three, var_four)
+foo = long_function_name(
+    var_one, var_two,
+    var_three, var_four,
+)
 ```
 
 # More indentation included to distinguish this from the rest.
@@ -104,7 +106,8 @@ def long_function_name(
 # Hanging indents should add a level.
 foo = long_function_name(
     var_one, var_two,
-    var_three, var_four)
+    var_three, var_four,
+)
 ```
 
 No:
@@ -128,7 +131,8 @@ Optional:
 # Hanging indents *may* be indented to other than 4 spaces.
 foo = long_function_name(
   var_one, var_two,
-  var_three, var_four)
+  var_three, var_four,
+)
 ```
 
 When the conditional part of an if-statement is long enough to require that it be written across multiple lines, it's worth noting that the combination of a two character keyword (i.e. if), plus a single space, plus an opening parenthesis creates a natural 4-space indent for the subsequent lines of the multiline conditional. This can produce a visual conflict with the indented suite of code nested inside the if-statement, which would also naturally be indented to 4 spaces. This PEP takes no explicit position on how (or whether) to further visually distinguish such conditional lines from the nested suite inside the if-statement. Acceptable options in this situation include, but are not limited to:
@@ -153,19 +157,7 @@ if (this_is_one_thing
 (Also see the discussion of whether to break before or after binary operators below.)
 ```
 
-The closing brace/bracket/parenthesis on multiline constructs may either line up under the first non-whitespace character of the last line of list, as in:
-
-```python
-my_list = [
-    1, 2, 3,
-    4, 5, 6,
-    ]
-result = some_function_that_takes_arguments(
-    'a', 'b', 'c',
-    'd', 'e', 'f',
-    )
-```
-or it may be lined up under the first character of the line that starts the multiline construct, as in:
+The closing brace/bracket/parenthesis on multiline should be lined up under the first character of the line that starts the multiline construct, as in:
 
 ```python
 my_list = [
@@ -191,7 +183,7 @@ When invoking the Python 2 command line interpreter with the -t option, it issue
 
 ### Maximum Line Length
 
-Limit all lines to a maximum of 79 characters.
+Limit all lines to a maximum of 79 characters for open source projects and 120 characters for internal ones.
 
 For flowing long blocks of text with fewer structural restrictions (docstrings or comments), the line length should be limited to 72 characters.
 
