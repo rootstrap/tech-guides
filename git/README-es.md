@@ -237,7 +237,7 @@ Para esto, se deben seguir los mismos pasos detallados en la subsección **integ
 * **Casos de uso:** Bugs o cambios críticos de producción.
 
 <p align="center">
-  <img src="hotfix-branch.jpg" width="420px" height="560px"/>
+  <img src="hotfix-branch.png" width="600px" height="600px"/>
 </p>
 
 
