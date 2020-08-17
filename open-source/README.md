@@ -11,6 +11,7 @@ This is a guide for publishing and maintaining open source projects, check the G
 **Make sure to have:**
 - License (default: [MIT](https://opensource.org/licenses/MIT))
 - Code of Conduct (default: [Contributor Covenant](https://www.contributor-covenant.org/))
+- Contributing: We follow the [Rootstrap Contributing Guide](./rootstrap_contributing_guide.md)
 - Continuous Integration (default: [TravisCI](https://travis-ci.org))
 - Code Quality tools (default: [CodeClimate](https://codeclimate.com))
 - Readme with: Description, Prerequisites/Installation, Usage, Company credits and links to items above (template: [README example](./OSS_README_example.md))
