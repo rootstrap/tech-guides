@@ -143,7 +143,7 @@ Si se realizan cambios en las branches, se puede mergear de nuevo ese cambio en 
 
 *Nota: a pesar de ser una branch que tiene como finalidad mostrar el avance en una review, no es recomendable enviar una versión a partir de esta branch. En estos casos, hablar con el referente del proyecto o algunos de los referentes de la empresa.*
 
-*Es recomendable hacer el deploy de esta branch a un ambiente previo a staging, como puede ser development. Ver: manejo de environnements en base a git workflow (documento en construcción).*
+*Es recomendable hacer el deploy de esta branch a un ambiente previo a staging, como puede ser development. Ver: manejo de environments en base a git workflow (documento en construcción).*
 
 <p align="center">
   <img src="demo-branch.jpg" width="420px" height="500px"/>
