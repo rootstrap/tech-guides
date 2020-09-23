@@ -1,4 +1,4 @@
-# How starting a new Django project with Cookiecutter
+# How to start a new Django project with Cookiecutter
 
 ## Install Cookiecutter
 `$ pip install cookiecutter`
