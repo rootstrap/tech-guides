@@ -9,7 +9,7 @@
 ## Fill generator options
 *Cookiecutter* gives us a set of pre-defined configurations to include at our project. Each configuration depends on each project that you will be involved in. You can take a look at [the full list of generation options](https://cookiecutter-django.readthedocs.io/en/latest/project-generation-options.html).
 
-Despite the previously mentioned, we provide you a list of the principal configuration that you have to configure in a new *Cookiecutter* project.
+Despite the previously mentioned, we provide you a list of the principal configuration that you have to set in a new *Cookiecutter* project.
 
 NOTE:
 - Each option suggests a default value if you agree with it, just press enter.
