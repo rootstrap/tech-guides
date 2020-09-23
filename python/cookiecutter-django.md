@@ -7,7 +7,7 @@ The aim of this guide is to help you to initialize your Django project from one 
 Firstly, we have to install that tool running `$ pip install cookiecutter`
 
 ## Create a new project
-How we want to create a Django project, we need to use the [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django) template.
+Since we want to create a Django project, we need to use the [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django) template.
 
 Run the following command to create the project:
 `$ cookiecutter gh:pydanny/cookiecutter-django`
