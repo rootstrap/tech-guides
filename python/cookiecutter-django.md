@@ -1,9 +1,15 @@
 # How to start a new Django project with Cookiecutter
+The aim of this guide is to help you to initialize your Django project from one of the most recognized open-source utilities for this area.
 
 ## Install Cookiecutter
-`$ pip install cookiecutter`
+[*Cookiecutter*](https://github.com/cookiecutter/cookiecutter) is a command-line tool that helps us to create projects from different templates, in our case, we will create a Django project.
+
+Firstly, we have to install that tool running `$ pip install cookiecutter`
 
 ## Create a new project
+How we want to create a Django project, we need to use the [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django) template.
+
+Run the following command to create the project:
 `$ cookiecutter gh:pydanny/cookiecutter-django`
 
 ## Fill generator options
@@ -29,7 +35,7 @@ Some interesting options:
 - **use_drf**: This option asks us if we want to add [Django REST framework](https://www.django-rest-framework.org/) to our application. At Rootstrap we use it as the base of our API, so, you should enter the option: `y`.
 - **use_mailhog**: This option asks us if we want to add [Mailhog](https://github.com/mailhog/MailHog) as an email viewer during the development process. We recommend that option, so, you should enter: `y`.
 - **use_heroku**: This option asks us if we want to add some configuration files to deploy the project to *Heroku*. At Rootstrap we usually deploy to it, so, you should enter: `y`.
-- **keep_local_envs_in_vcs**: This option asks us if we want to add the environment configurations to the Version Control System. Also, it's useful to set Heroku or docker variables. AAt Rootstrap we manage that information differently, so, you should enter: `n`.
+- **keep_local_envs_in_vcs**: This option asks us if we want to add the environment configurations to the Version Control System. Also, it's useful to set Heroku or docker variables. At Rootstrap we manage that information differently, so, you should enter: `n`.
 
 <details>
   <summary>View full bash output. <i>(Click &#x25B6; to display the file)</i></summary>
@@ -101,7 +107,7 @@ debug [n]:
 </details>
 
 ## Install pipenv
-The recommendation from Rootstrap is that you use `pipenv` to manage the development environment dependencies.
+The recommendation from Rootstrap is that you use [`pipenv`](https://github.com/pypa/pipenv) to manage the development environment dependencies.
 
 To install the package, just run `$ pip install pipenv`.
 
@@ -110,7 +116,9 @@ To install the dev dependencies, run `$ pipenv install -r requirements/local.txt
 
 NOTE:
 - Remember, when you install a new dependency, check if it will be needed at production or not. In the case that it won't be needed, add the flag `--dev` at the end of the installation command.
-- At pipenv to run a command, you must write before `pipenv run`, for example, the command that runs the server should be `$ pipenv run python manage.py runserver`.
+- At `pipenv` to run a command, you have two options:
+    1. You can run `$ pipenv shell`, which creates a shell with the virtual environment activated, and there, you can run any commands without prefixes. For example, the command that runs the server should be just `$ python manage.py runserver`.
+    1. Also, you can write `pipenv run` before any command, for example, the command that runs the server should be `$ pipenv run python manage.py runserver`. The next commands follow this patter but you will be able to run it according to the previous option.
 
 ## Create psql database
 `$ createdb cookiecutter_starter-dev`
