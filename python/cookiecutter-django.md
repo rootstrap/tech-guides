@@ -438,7 +438,7 @@ jobs:
 
 1. To create a new app into the project, we have to run the command `$ pipenv run python manage.py startapp <new_app_name>`.
     - **new_app_name**: is the name of the new app and it has to be written in plural. For example: targets
-1. How that command creates the new app at the root directory, you have to move it to `<project_name>` directory, where there are other existing apps like `users`.
+1. Since that command creates the new app at the root directory, you have to move it to `<project_name>` directory, where there are other existing apps like `users`.
     - **project_name**: is the name that you define in the first step of the project creation. For example: cookiecutter_starter
 1. Other change is needed, you have to edit the `apps.py` file of the new app and replace the current `name` field of the config class from only `<new_app_name>` to `<project_name>.<new_app_name>`.
 ```python
