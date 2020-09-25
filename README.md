@@ -30,6 +30,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 * [Angular 2+](https://angular.io/guide/styleguide)
 * [React](https://github.com/airbnb/javascript/tree/master/react)
 * [RSpec](./ruby/rspec/README.md)
+* [Django](./python/cookiecutter-django.md)
 
 ### Hosting Platforms
  * [Heroku](./infrastructure/Heroku.md)

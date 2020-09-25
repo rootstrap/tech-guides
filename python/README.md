@@ -1125,7 +1125,7 @@ def test_sum_simple_values_calculated ()
 
 Your unit test name should express a specific requirement. This requirement should be somehow derived from either a business requirement or a technical requirement. In any case, that requirement has been broken down into small enough pieces, each of which represents a test case. If your test is not representing a requirement, why are you writing it? Why is that code even there?
 
-Most developers don't bother too much with writing good assert messages in their tests. A good assert message (which shows up if the test fails) is the key to understanding what went wrong. Assuming writing good assert messages is one of the key places where most unit test developers fall short, the only thing left to save us then is the name of the test. 
+Most developers don't bother too much with writing good assert messages in their tests. A good assert message (which shows up if the test fails) is the key to understanding what went wrong. Assuming writing good assert messages is one of the key places where most unit test developers fall short, the only thing left to save us then is the name of the test.
 
 #### Test name should include the expected input or state and the expected result for that input or state
 
@@ -1214,7 +1214,7 @@ Virtualenv is used to manage Python packages for different projects. Using virtu
 **Note**: if you are using Python 3.3 or newer the venv module is included in the Python standard library. This can also create and manage virtual environments, however, it only supports Python 3.
 
 ### Verify if Virtualenv is installed
-There is a chance that virtualenv is already installed on your system. 
+There is a chance that virtualenv is already installed on your system.
 
 Run the following command in your terminal
 ```
@@ -1270,7 +1270,7 @@ $ pip install virtualenvwrapper
 Then you should add the following lines to your .profile / .bashrc or bash_profile:
 ```
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3; # This is to avoid specifiying the python version every time.
-export WORKON_HOME=$HOME/.virtualenvs                   # in Linux Python 3 should be the default and this line  
+export WORKON_HOME=$HOME/.virtualenvs                   # in Linux Python 3 should be the default and this line
 export PROJECT_HOME=$HOME/Devel                         # should not be necesary anymore.
 source /usr/local/bin/virtualenvwrapper.sh
 ```
@@ -1307,6 +1307,8 @@ https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 Here we describe some general criteria that we follow for django projects
 - Use generic APIViews for api developement (Mapping HTTP methods and not viewsets)
 - If you need some custom functionality add a function and decorate with: ```@require_http_methods([Method list])```
+
+**View also**: [How starting a new Django project with Cookiecutter](./cookiecutter-django.md).
 
 ## Suggested project scaffolding
 
