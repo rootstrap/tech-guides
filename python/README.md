@@ -45,6 +45,9 @@ prescriptions for Python developmen that mostly applies for Django.
 * [Programming Recommendations](#programming-recommendations)
   * [Function Annotations](#function-annotations)
   * [Variable Annotations](#variable-annotations)
+* [Django](#django)
+  * [Suggested project scaffolding](#suggested-project-scaffolding)
+  * [Viewsets](#viewsets)
 * [References](#references)
 * [Naming standards for unit tests](#naming-standards-for-unit-tests)
 * [Virtualenv](#virtualenv)
@@ -1304,66 +1307,129 @@ for further reading you can consult the docs.
 https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
 # Django
-Here we describe some general criteria that we follow for django projects
-- Use generic APIViews for api developement (Mapping HTTP methods and not viewsets)
-- If you need some custom functionality add a function and decorate with: ```@require_http_methods([Method list])```
-
-**View also**: [How starting a new Django project with Cookiecutter](./cookiecutter-django.md).
+To start a new Django project, we recomend to use [Django-Cookiecutter](https://github.com/pydanny/cookiecutter-django). Please go to our [guide to start a Django project](./cookiecutter-django.md) using this tool.
 
 ## Suggested project scaffolding
 
-This is the suggested scaffolding for a django project.
+This is the suggested scaffolding for a Django project, that is already specified in our Django-Cookiecutter guide.
 ```
-project_name
-|
-|__project_name(Here you should put all the settings for the app)
-|    |__ __init__.py
-|    |__settings
-|          |__ __init__.py
-|          |__ base.py
-|          |__ development.py
-|          |__ staging.py
-|          |__ production.py
-|          ...
-|    |__wsgi.py(optional)
-|    |__asgi.py(optional)
-|    |__urls.py
-|    ...
-|
-|__templates "Here are general templates, will be loaded last in the application"
-|
-|__api
-|  |__ __init__.py
-|  ...
-|  |__ urls.py (Use this file in order to route the apps located under the applications folder)
-|
-|__applications
-|   |__ __init__.py
-|   |__app1
-|    ... |__models.py(Split to folder and import models in __init__ if neccesary)
-|        |__views.py
-|        |__serializers.py
-|        |__urls.py
-|        |__test
-|        | |__requests
-|        |    |__model_name_1
-|        |    ... |__test_create
-|        |        |__test_update
-|        |        |__test_retrieve
-|        |        |__test_delete
-|        |        |__test_custom_functionality(optional)
-|        |        ...
-|        |
-|        |__templates(Optional and not present if the project is api only)
-|        |
-|        |__api.py(Optional and not present if project is api only)
-|        ... (if needed add more files)
-|
-|__utils
-|   |__util_1.py
-|   |__util_2.py
+<project_name>
+├── config
+│   ├── settings
+│   │   ├── ...
+│   │   ├── base.py
+│   │   ├── local.py
+│   │   ├── production.py
+│   │   └── test.py
+│   ├── urls.py
+│   └── ...
+├── <project_name> - Where you place new apps
+│   ├── templates
+│   │   ├── <new_app_name>
+│   │   │   └── <model_name>_form.html
+│   │   ├── users
+│   │   │   └── ...
+│   │   ├── ...
+│   │   ├── 403.html
+│   │   ├── 404.html
+│   │   ├── 500.html
+│   │   └── base.html
+│   ├── <new_app_name>
+│   │   ├── api
+│   │   │   ├── serializers.py
+│   │   │   └── views.py
+│   │   ├── migrations
+│   │   │   └── ...
+│   │   ├── tests
+│   │   │   ├── __init__.py
+│   │   │   ├── factories.py
+│   │   │   ├── test_forms.py
+│   │   │   ├── test_models.py
+│   │   │   ├── test_urls.py
+│   │   │   └── test_views.py
+│   │   ├── utils
+│   │   │   └── ...
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── users
+│   │   └── ...
+│   └── ...
+├── ...
+└── manage.py
+
+```
+
+## Viewsets
+If you are working on a RESTful API, we recommend you to use [Django REST framework Viewsets](https://www.django-rest-framework.org/api-guide/viewsets/).
+A Viewset abstracts the HTTP verbs GET, POST, PUT, etc, with proper resource-based operations: list, create, retrieve, update, partial_update and destroy.
+Let's see an example of a definition of a Viewset in a Django project:
+
+```python
+# views.py file in myapp
+from rest_framework import viewsets
+
+from myapp.models import MyModel
+from myapp.serializers import MyModelSerializer
+
+
+class MyModelViewSet(viewsets.ModelViewSet):
+    serializer_class = MyModelSerializer
+    queryset = MyModel.objects.all()
+```
+
+Now let's register the Viewset:
+
+```python
+# your urls.py file in myapp
+from rest_framework.routers import DefaultRouter
+
+from myapp.views import MyModelViewSet
+
+router = DefaultRouter()
+router.register(r'mymodel', MyModelViewSet, base_name='mymodel')
+urlpatterns = router.urls
+```
+
+This code adds a set of URLs into your urlpatterns in the form `<base_name>-list/`. For example:
+- `GET mymodel-list/` will point to MyModelViewSet.list
+- `POST mymodel-list/` will point to MyModelViewSet.create
+- `PUT mymodel-list/` will point to MyModelViewSet.update
+
+And so on. You can even customize the permissions, and/or the use of serializers overwriting the `get_permissions` and/or the `get_serializer` functions of the MyModelViewSet class respectively, for example:
+
+```python
 ...
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+...
+from myapp.serializers import ListMyModelSerializer, MyModelSerializer
+...
+
+class MyModelViewSet(viewsets.ModelViewSet):  
+    ...
+
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+    
+    ...
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return ListMyModelSerializer
+        return MyModelSerializer
+
+
 ```
+
+
 
 ## References
 
