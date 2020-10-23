@@ -112,7 +112,14 @@ The recommendation from Rootstrap is that you use [`pipenv`](https://github.com/
 To install the package, just run `$ pip install pipenv`.
 
 ## Install dependencies
-To install the dev dependencies, run `$ pipenv install -r requirements/local.txt --dev`.
+In order to use pipenv and avoid confusions we are going to generate a Pipfile with the existing requirements and then remove all "requirements.txt" type of files.
+
+- Install base and production dependencies: `$ pipenv install -r requirements/production.txt`
+- Open `requirements/local.txt` and delete the first line: `-r base.txt`. This will prevent the duplication of all base dependencies under `[dev-packages]` in the Pipfile.
+- Install dev dependencies: `$ pipenv install -r requirements/local.txt --dev`.
+- Delete the following files and folder:
+  - `requirements.txt` from the root of the project
+  - `requirements/base.txt`, `requirements/local.txt`, `requirements/production.txt` and the `requirements` folder.
 
 NOTE:
 - Remember, when you install a new dependency, check if it will be needed at production or not. In the case that it won't be needed, add the flag `--dev` at the end of the installation command.
@@ -220,14 +227,14 @@ To convert the existing double quotes to single ones, follow these steps:
 1. In your IDE, search by the regex `/(?<!"")(?<=(?!""").)"(?!"")/`.
 1. Replace the occurrences with the single quote `'`.
 1. Include only the python files: `*.py`.
-1. Exclude migrations files: `*migrations*`.
+1. Exclude migrations files and manage.py: `*migrations*, manage.py`.
 1. Check that everything is well replaced.
 
 The VS Code configuration:
 - **Search**: `(?<!"")(?<=(?!""").)"(?!"")`
 - **Replace**: `'`
 - **files to include**: `*.py`
-- **files to exclude**: `*migrations*`
+- **files to exclude**: `*migrations*, manage.py`
 
 
 ## CI
@@ -368,11 +375,7 @@ process.yml
 
 name: Python application
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -404,14 +407,15 @@ jobs:
 
     - name: Cache pipenv
       uses: actions/cache@v2
-      id: cache-venv
+      id: pipenv-cache
       with:
-        path: ./.venv
-        key: ${{ runner.os }}-venv-${{ hashFiles('Pipfile.lock') }}
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-cache-${{ hashFiles('Pipfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-venv-
+          ${{ runner.os }}-pipenv-cache
 
     - name: Installing requirements
+      if: steps.pipenv-cache.outputs.cache-hit != 'true'
       run: |
         pipenv install --dev
 
