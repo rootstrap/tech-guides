@@ -218,6 +218,19 @@ exclude = '.*\/(migrations|settings)\/.*'
     - This command list all the issues found.
     - A useful command could be `$ pipenv run black .` which resolves all the issues. Also, you can run `$ pipenv run black . --diff` to watch the proposed changes.
 
+### [pre-commit](https://pre-commit.com/)
+*NOTE: By default this package is already installed.*
+
+This is optional and is a local configuration. A sample `pre-commit-config` hook already exists in the generated project as default.
+1. `$ pipenv install pre-commit --dev`
+2. `$ pre-commit install` # A git repo is required for pre-commit to install
+
+This will run flake8, black and isort locally before creating a commit. This can avoid having to wait for the CI to fail to remember that we missed some styling issues. You can ignore the pre commit hook by adding `-n` when creating a commit (e.g. `git commit -m 'ignore pre-commit' -n`). 
+
+You can check the `.pre-commit-config.yaml` file for more details.
+
+Note: the first commit after running step 2 will take a while but after that it will be pretty fast.
+
 ### Single-quotes
 > *Here at Rootstrap we prefer to use single-quoted strings over double quotes. For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method.*
 >
