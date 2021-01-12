@@ -91,11 +91,11 @@ For testing against different versions of `gem` dependencies you should add a `g
 
 To be able to publish or update your gem in RubyGems, you first need to create a release and tag for your version.
 You can follow this steps:
-- Create a new branch for release purpose.
-- Update your gem `VERSION`.
-  - Make sure your gemspec `spec.version` uses this new version.
-  - You can also open a PR if your changes include more than just the version number.
-- Once your branch is merged, create a tag.
+1. Create a new branch for release purpose.
+1. Update your gem `VERSION`.
+    1. Make sure your gemspec `spec.version` uses this new version.
+    1. You can also open a PR if your changes include more than just the version number.
+1. Once your branch is merged, create a tag.
 ```sh
 $ git tag v[x.x.x]          # Create a tag for version
 $ git push origin v[x.x.x]  # Push the tag to Github
