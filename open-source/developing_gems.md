@@ -87,6 +87,20 @@ bundle exec rake
 
 For testing against different versions of `gem` dependencies you should add a `gemfiles` folder and inside it declare each separate `Gemfile` which can be then used by the CI.
 
+## Release a new Gem version
+
+To be able to publish or update your gem in RubyGems, you first need to create a release and tag for your version.
+You can follow this steps:
+- Create a new branch for release purpose.
+- Update your gem `VERSION`.
+  - Make sure your gemspec `spec.version` uses this new version.
+  - You can also open a PR if your changes include more than just the version number.
+- Once your branch is merged, create a tag.
+```sh
+$ git tag v[x.x.x]          # Create a tag for version
+$ git push origin v[x.x.x]  # Push the tag to Github
+```
+
 ## Publishing in RubyGems
 
 First create an account on [RubyGems](https://rubygems.org/sign_up). 
@@ -94,8 +108,6 @@ Then follow the next steps:
 
 ```sh
 
-$ git tag v[x.x.x]                      # Create a tag for version
-$ git push origin v[x.x.x]              # Push the tag to Github
 $ gem build [gem-name].gemspec          # Build the gem
 $ gem push [gem-build].gem              # Push the gem to RubyGems
 $ gem owner --add rootstrap [gem-name]  # Add Rootstrap as an Owner
