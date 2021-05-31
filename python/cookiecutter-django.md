@@ -127,7 +127,7 @@ In order to use pipenv and avoid confusions we are going to generate a Pipfile w
 NOTE:
 - Remember, when you install a new dependency, check if it will be needed at production or not. In the case that it won't be needed, add the flag `--dev` at the end of the installation command.
 - At `pipenv` to run a command, you have two options:
-    1. You can run `$ pipenv shell`, which creates a shell with the virtual environment activated, and in there, you can run any commands without prefixes. For example, the command that runs the server should be just `$ python manage.py runserver`
+    1. You can run `$ pipenv shell`, which creates a shell with the virtual environment activated, and in there, you can run any command without prefixes. For example, the command that runs the server should be just `$ python manage.py runserver`
     2. If you haven't entered to the shell, you can write `pipenv run` before any command, for example, the command that runs the server should be `$ pipenv run python manage.py runserver`
 
 ## Create psql database
