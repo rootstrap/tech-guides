@@ -275,6 +275,42 @@ The VS Code configuration:
 1. Set up the project at CodeClimate. [guide](https://docs.codeclimate.com/docs/getting-started-with-code-climate)
 1. Find your `Test Coverage ID` at CodeClimate to complete the next configuration. [guide](https://docs.codeclimate.com/docs/finding-your-test-coverage-token)
 1. Follow one of the following configurations *Circle CI* or *GitHub Action*.
+1. Create a `.codeclimate.yml` configuration file in the root of the project using the following content as a starter to avoid analizing unnecessary files like tests and migrations.
+
+<details>
+  <summary>.codeclimate.yml. <i>(Click &#x25B6; to display the file)</i></summary>
+
+```yml
+#  .codeclimate.yml
+version: "2"
+
+checks:
+  argument-count:
+    config:
+      threshold: 5 # Allow at most 5 arguments in a function
+  method-count:
+    config:
+      threshold: 25 # Allow at most 25 functions in a class
+
+exclude_patterns:
+  - "**/migrations/**"
+  - "**/settings/**"
+  - "docs/"
+  - "**/*.env"
+  - "build/"
+  - "dist/"
+  - "**__pycache__**"
+
+plugins:
+  pep8:
+    enabled: true
+  duplication:
+    enabled: true
+    exclude_patterns:
+      - "**/tests/**" # Don't check duplication on tests
+```
+</details>
+
 
 ### Circle CI
 1. Set up the project at CircleCI. [guide](https://circleci.com/docs/2.0/getting-started/#setting-up-circleci)
