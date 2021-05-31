@@ -4,7 +4,7 @@ The aim of this guide is to help you to initialize your Django project from one 
 ## Install Cookiecutter
 [*Cookiecutter*](https://github.com/cookiecutter/cookiecutter) is a command-line tool that helps us to create projects from different templates, in our case, we will create a Django project.
 
-Firstly, we have to globally install that tool running `$ pip install cookiecutter`.
+Firstly, we have to globally install that tool running `$ pip install cookiecutter`
 
 ## Create a new project
 Since we want to create a Django project, we need to use the [Cookiecutter Django](https://github.com/pydanny/cookiecutter-django) template.
@@ -112,14 +112,14 @@ Note: By default the root folder of the project generated will be equal to the e
 ## Install pipenv
 The recommendation from Rootstrap is that you use [`pipenv`](https://github.com/pypa/pipenv) to manage the development environment dependencies.
 
-To install the package globally, just run `$ pip3 install pipenv`.
+To install the package globally, just run `$ pip3 install pipenv`
 
 ## Install dependencies
 In order to use pipenv and avoid confusions we are going to generate a Pipfile with the existing requirements and then remove all "requirements.txt" type of files.
 
 1. Install the main dependencies: `$ pipenv install -r requirements/production.txt`
 2. Open `requirements/local.txt` and delete the first line: `-r base.txt`. This will prevent the duplication of all base dependencies under `[dev-packages]` in the Pipfile.
-3. Install dev dependencies: `$ pipenv install -r requirements/local.txt --dev`.
+3. Install dev dependencies: `$ pipenv install -r requirements/local.txt --dev`
 4. Delete the following files and folder:
   - `requirements.txt` from the root folder of the project.
   - `requirements/base.txt`, `requirements/local.txt`, `requirements/production.txt` and the `requirements` folder.
@@ -127,11 +127,13 @@ In order to use pipenv and avoid confusions we are going to generate a Pipfile w
 NOTE:
 - Remember, when you install a new dependency, check if it will be needed at production or not. In the case that it won't be needed, add the flag `--dev` at the end of the installation command.
 - At `pipenv` to run a command, you have two options:
-    1. You can run `$ pipenv shell`, which creates a shell with the virtual environment activated, and in there, you can run any commands without prefixes. For example, the command that runs the server should be just `$ python manage.py runserver`.
-    2. If you haven't entered to the shell, you can write `pipenv run` before any command, for example, the command that runs the server should be `$ pipenv run python manage.py runserver`.
+    1. You can run `$ pipenv shell`, which creates a shell with the virtual environment activated, and in there, you can run any commands without prefixes. For example, the command that runs the server should be just `$ python manage.py runserver`
+    2. If you haven't entered to the shell, you can write `pipenv run` before any command, for example, the command that runs the server should be `$ pipenv run python manage.py runserver`
 
 ## Create psql database
-`$ createdb <db-name-dev>`. For example `$ createdb cookiecutter_starter-db-dev`
+`$ createdb <db-name>`  
+
+For example `$ createdb cookiecutter_starter-db-dev`
 
 ## Load .env file for local configurations
 1. At `config/settings/base.py` set `DJANGO_READ_DOT_ENV_FILE` to load the configurations from `.env` file.
@@ -150,15 +152,15 @@ READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 #  .env.example
 
 DJANGO_DEBUG=on
-DATABASE_URL=postgres://<user>:<password>@localhost:5432/<db-name-dev>
+DATABASE_URL=postgres://<user>:<password>@localhost:5432/<db-name>
 ```
 
-For exampple, let's say you have:
-- A created db named `cookiecutter_starter-db-dev`, and a user `postgres` with password `postgres`. 
-- Then the value for `DATABASE_URL` would be: `DATABASE_URL=postgres://postgres:postgres@localhost:5432/cookiecutter_starter-db-dev`.
+For example, let's say you have:
+- A created db named `cookiecutter_starter-db-dev`, and a user `postgres` with password `postgres` 
+- Then the value for `DATABASE_URL` would be: `DATABASE_URL=postgres://postgres:postgres@localhost:5432/cookiecutter_starter-db-dev`
 
 ### Important Note
-For the next commands, we will assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`.
+For the next commands, we will assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`
 
 ## Migrate
 `$ python manage.py migrate`
@@ -215,7 +217,7 @@ skip_string_normalization = true
 line-length = 120
 exclude = '.*\/(migrations|settings)\/.*'
 ```
-3. Check running `$ black . --check`.
+3. Check running `$ black . --check`
     - This command list all the issues found.
     - A useful command could be `$ black .` which resolves all the issues. Also, you can run `$ black . --diff` to watch the proposed changes.
 
@@ -227,13 +229,13 @@ If you want to have this project in a new Github repository under the rootstrap 
 4. Write the name for the respository equal to the name of the root folder of the project created with DjangoCookieCutter.
 5. Copy the `git clone with ssh value` from the project.
 6. Go to the root folder project in your terminal.
-7. Run `$ git init`.
-8. Run `$ git remote add origin <git clone with ssh value>`.
-9. If your current branch hasn't the `main` branch, then run `$ git checkout -b main`.
-10. Run `$ git add .`.
+7. Run `$ git init`
+8. Run `$ git remote add origin <git clone with ssh value>`
+9. If your current branch hasn't the `main` branch, then run `$ git checkout -b main`
+10. Run `$ git add .`
 11. Run `$ git commit -m "First commit"`. You can change the `"First commit"` message with whatever you think is correct.
-12. Run `$ git push origin main`.
-13. If you had to run `$ git checkout -b main` then now run `$ git branch -M main`.
+12. Run `$ git push origin main`
+13. If you had to run `$ git checkout -b main` then now run `$ git branch -M main`
 
 ### [pre-commit](https://pre-commit.com/)
 *NOTE: By default this package is already installed.*
@@ -254,10 +256,10 @@ Note: the first commit after running step 2 will take a while but after that it 
 > [Rootstrap Guides/Python/String Quotes](https://github.com/rootstrap/tech-guides/tree/master/python#string-quotes)
 
 To convert the existing double quotes to single ones, follow these steps:
-1. In your IDE, search by the regex `/(?<!"")(?<=(?!""").)"(?!"")/`.
-2. Replace the occurrences with the single quote `'`.
-3. Include only the python files: `*.py`.
-4. Exclude migrations files and manage.py: `*migrations*, manage.py`.
+1. In your IDE, search by the regex `/(?<!"")(?<=(?!""").)"(?!"")/`
+2. Replace the occurrences with the single quote `'`
+3. Include only the python files: `*.py`
+4. Exclude migrations files and manage.py: `*migrations*, manage.py`
 5. Check that everything is well replaced.
 
 The VS Code configuration:
@@ -366,9 +368,9 @@ jobs:
 
 **Extra**: If you want, you can run CircleCI locally.
 1. Install the [CircleCI CLI](https://circleci.com/docs/2.0/local-cli-getting-started/#section=getting-started)
-2. Run the command to generate the `process.yml` file: `$ circleci config process .circleci/config.yml > process.yml`.
-3. Finally execute it: `$ circleci local execute -c process.yml --job build`.
-4. *(Optional)* Add `process.yml` to `.gitignore`.
+2. Run the command to generate the `process.yml` file: `$ circleci config process .circleci/config.yml > process.yml`
+3. Finally execute it: `$ circleci local execute -c process.yml --job build`
+4. *(Optional)* Add `process.yml` to `.gitignore`
 
 ```
 # .gitignore
@@ -479,13 +481,13 @@ jobs:
 ## Adding a new app
 
 ### Important Note
-For the next commands, we will also assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`.
+For the next commands, we will also assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`
 
-1. To create a new app into the project, we have to run the command `$ python manage.py startapp <new_app_name>`.
+1. To create a new app into the project, we have to run the command `$ python manage.py startapp <new_app_name>`
     - **new_app_name**: is the name of the new app and it has to be written in plural. For example: targets
 2. Since that command creates the new app at the root directory, you have to move it to `<project_name>` directory, where there are other existing apps like `users`.
     - **project_name**: is the name that you define in the first step of the project creation. For example: cookiecutter_starter
-3. Other change is needed, you have to edit the `apps.py` file of the new app and replace the current `name` field of the config class from only `<new_app_name>` to `<project_name>.<new_app_name>`.
+3. Other change is needed, you have to edit the `apps.py` file of the new app and replace the current `name` field of the config class from only `<new_app_name>` to `<project_name>.<new_app_name>`
 ```python
 # cookiecutter_starter/targets/apps.py
 
