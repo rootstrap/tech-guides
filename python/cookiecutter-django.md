@@ -273,9 +273,9 @@ The VS Code configuration:
 
 ### Code Climate
 1. Set up the project at CodeClimate. [guide](https://docs.codeclimate.com/docs/getting-started-with-code-climate)
-1. Find your `Test Coverage ID` at CodeClimate to complete the next configuration. [guide](https://docs.codeclimate.com/docs/finding-your-test-coverage-token)
-1. Follow one of the following configurations *Circle CI* or *GitHub Action*.
-1. Create a `.codeclimate.yml` configuration file in the root of the project using the following content as a starter to avoid analizing unnecessary files like tests and migrations.
+2. Find your `Test Coverage ID` at CodeClimate to complete the next configuration. [guide](https://docs.codeclimate.com/docs/finding-your-test-coverage-token)
+3. Follow one of the these configurations: *Circle CI* or *GitHub Action*.
+4. Create a `.codeclimate.yml` configuration file in the root of the project using the following content as a starter to avoid analyzing unnecessary files like tests and migrations.
 
 <details>
   <summary>.codeclimate.yml. <i>(Click &#x25B6; to display the file)</i></summary>
@@ -314,11 +314,11 @@ plugins:
 
 ### Circle CI
 1. Set up the project at CircleCI. [guide](https://circleci.com/docs/2.0/getting-started/#setting-up-circleci)
-1. Create the folder `.circleci` and inner it the file `config.yml` with the following content.
-1. Create an environment variable to know where sends the CodeClimate report. [guide](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
+2. Create the folder `.circleci` and inner it the file `config.yml` with the following content.
+3. Create an environment variable to know where sends the CodeClimate report. [guide](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
     - Name: `CC_TEST_REPORTER_ID`
     - Value: `Test Coverage ID`
-1. Add badge to readme file. [guide](https://circleci.com/docs/2.0/status-badges/)
+4. Add badge to readme file. [guide](https://circleci.com/docs/2.0/status-badges/)
 ```markdown
 # Template:
 .. image:: https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>.svg?style=svg
