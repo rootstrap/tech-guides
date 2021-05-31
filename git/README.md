@@ -4,7 +4,7 @@ We use style guides and standards on a daily basis to help us keep a unified cri
 
 There are many advantages that come with the use of the previously mentioned criteria. One of them is that it allows us to have the same nomenclature to make it easy to incorporate new team members as well as keeping a better project organization. Furthermore, it tackles common problems by providing effective solutions. Last but not least, the workflow focuses on keeping a tidy and reliable history that truly reflects the project’s current state.
 
-Below is listed the document content. Some of the instructions are mandatory and need to be followed throughout the development process of any project. The mandatory specifications are highlighted with a **[Required]** label. Despite some of the directions are not mandatory, they are highly recommended.
+Below is listed the document content. Some of the instructions are mandatory and need to be followed throughout the development process of any project. The mandatory specifications are highlighted with a **[Required]** label. Even though some of the directions are not mandatory, they are highly recommended.
 
 
  [Spanish version](./README-es.md)
@@ -42,7 +42,7 @@ Below is listed the document content. Some of the instructions are mandatory and
 
 ## Before releasing to production
 
-This section contains aspects related to the branch management before released to production.
+This section contains aspects related to branch management before releasing to production.
 
 ### Develop branch (develop) **[Required]**
 
@@ -55,9 +55,9 @@ This branch is the main one because it reflects the work done by the whole team 
 
 ### Staging branch (staging) **[Required]**
 
-This branch has all the features ready to be tested by the Client. 
+This branch has all the features ready to be tested by the Client.
 
-If the project has CD configured, every time something is merged into this branch the code will be automatically deployed to Staging environment for the Client to test.
+If the project has CD configured, every time something is merged into this branch the code will be automatically deployed to the Staging environment for the Client to test.
 
 * **Origin:** *master* (in the initial project set up this branch is created from master)
 * **Destination:** -
@@ -65,7 +65,7 @@ If the project has CD configured, every time something is merged into this branc
 
 ### QA branch (qa) **[Optional]**
 
-This branch has all the features ready to be tested by the QA team. 
+This branch has all the features ready to be tested by the QA team.
 
 If the project has CD configured, every time something is merged into this branch the code will be automatically deployed to the QA environment.
 
@@ -73,7 +73,7 @@ If the project has CD configured, every time something is merged into this branc
 * **Destination:** *staging*
 * **Use case:** Integration of the work done by the development team ready for QA team to test.
 
-**_Note_**: *If a feature merged into QA branch is not ready to be promoted to Staging branch, needed adjustments (removing the feature/disabling access to it/etc) should be made in Develop branch, followed by promoting the code to QA branch to continue the flow.*
+**_Note_**: *If a feature merged into the QA branch is not ready to be promoted to the Staging branch, needed adjustments (removing the feature/disabling access to it/etc) should be made in the Develop branch, followed by promoting the code to the QA branch to continue the flow.*
 
 ### Feature branch (feature/x)
 
@@ -91,7 +91,7 @@ _Example: feature/sign-up_
 
 ### Fix branch (fix/x)
 
-This branch is created in order to fix a bug during development phase.
+This branch is created in order to fix a bug during the development phase.
 
 _Example: fix/sign-up-error-messages_
 
@@ -101,7 +101,7 @@ _Example: fix/sign-up-error-messages_
 
 ### Enhancement branch (enhancement/x)
 
-This branch is created to add an enhancement during development phase on something that was already merged to the development branch.
+This branch is created to add an enhancement during the development phase on something that was already merged to the development branch.
 
 _Example: enhancement/users-retrievement-query_
 
@@ -136,7 +136,7 @@ Changes in this branch will be reflected in develop after reviewed and approved 
 
 If there is a change of any kind in the feature branches in a commit (*git amend*) or in the history (*git rebase*), a new *demo* branch can be created to reflect the change or it can just be merged in the existing branch.
 
-**_Note_**: *In spite of the fact that this branch has as a main purpose showing the progress in a review, it is not advised to send a version from that branch. In these cases you should talk to project or company referents.*
+**_Note_**: *In spite of the fact that this branch's main purpose is showing the progress in a review, it is not advised to send a version from that branch. In these cases you should talk to project or company referents.*
 
 *This branch can be deployed in an environment previous to staging such as development. See: Environment management base on the git workflow (work in progress).*
 
@@ -154,7 +154,7 @@ The main purpose is to keep commits history as clean as possible. As a consequen
 
 ### Master branch (master) **[Required]**
 
-It reflects the current code deployed in production, therefore, it must be stable. All the new features to be developed are going to have as origin *develop* and they are going to be merged to master once they are working as expected and approved by PO in staging environment.
+It reflects the current code deployed in production, therefore, it must be stable. All the new features to be developed are going to have as origin *develop* and they are going to be merged to master once they are working as expected and approved by PO in the Staging environment.
 
 * **Origin:** -
 * **Destination:** -
@@ -162,9 +162,9 @@ It reflects the current code deployed in production, therefore, it must be stabl
 
 ### Release branch (release_branch_x) **[Required]**
 
-Its main objective is to separate new features ready to be in production from those that are not ready to be released yet because either the team or the client do not want to. As a consequence, this branch only contains features that are production ready.
+Its main objective is to separate new features ready to be released to production from those that either the team or the client do not consider to be ready for release. As a consequence, this branch only contains features that are production ready.
 
-It should be deployed in a testing environment (commonly staging) accessible to the client and all the feedback given by him/her must be included in this branch.
+It should be deployed in a testing environment (usually staging) accessible to the client and all the feedback given by him/her must be included in this branch.
 
 The timing in which this branch should be created depends on the project and the team. In projects with big teams is convenient to create it when the development of the first feature in the version starts. However, when teams are small it is better to create it once all the features to be released are completed. This is the most common scenario in the company.
 
@@ -181,6 +181,7 @@ Once the release branch is ready to go to production it should be included in ma
 It is directly included in **master** through a Pull Request created from master. Ideally, every commit in that PR passed through a code review process, consequently, another code review is unnecessary to merge it, the developer should just check everything is correct.
 
 **Develop**
+
 It is directly included in **develop** through a Pull Request created from the release branch. Everything said for the master branch applies here too.
 
 ### Feedback branch (feedback/x)
@@ -191,11 +192,11 @@ _Example: feedback/sign-up-change-inputs-order_
 
 * **Origin:** *release branch*
 * **Destination:** *release branch*
-* **Use case:** Feedback from the client or any team member about a feature after its release branch has been deployed in a testing environment.
+* **Use case:** Feedback from the client or any team member about a feature after its release branch has been deployed to a testing environment.
 
 ### Hotfix (hotfix/sign-up) **[Required]**
 
-This branch is created to solve bugs or critical changes that should not be mixed with the current development (*develop branch*).
+This branch is created to solve bugs or critical changes that should not be mixed with the current development —*develop*— branch.
 
 Development bugs should not be confused with these bugs, development bugs should be merged to *develop or a release branch.* Not every bug deserves a hotfix, a hotfix aims to solve a critical bug that directly affects essential system functionality.
 
@@ -237,7 +238,7 @@ _Note: version management before releasing to production is highly recommended b
 
 ## After releasing to production **[Required]**
 
-Releases after production are the most important ones because they allow us to have an immutable capture of the code in production. In this case, releases are always created from *master*. For example, after merging a hotfix or release branch into master.
+Releases after production are the most important ones because they allow us to have an immutable image of the code in production. In this case, releases are always created from *master*. For example, after merging a hotfix or release branch into master.
 
 ### First release to production
 
