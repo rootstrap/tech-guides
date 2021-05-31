@@ -73,7 +73,7 @@ If the project has CD configured, every time something is merged into this branc
 * **Destination:** *staging*
 * **Use case:** Integration of the work done by the development team ready for QA team to test.
 
-**_Note_**: *If a feature merged into the QA branch is not ready to be promoted to the Staging branch, needed adjustments (removing the feature/disabling access to it/etc) should be made in the Develop branch, followed by promoting the code to the QA branch to continue the flow.*
+**_Note_**: *If a feature merged into the QA branch is not ready to be promoted to the Staging branch, then all needed changes (like: fixes, removing the feature, disabling access to it, etc) should be made in the Develop branch, followed by the promotion of those changes to the QA branch to continue the flow.*
 
 ### Feature branch (feature/x)
 
