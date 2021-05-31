@@ -136,7 +136,7 @@ Changes in this branch will be reflected in develop after reviewed and approved 
 
 If there is a change of any kind in the feature branches in a commit (*git amend*) or in the history (*git rebase*), a new *demo* branch can be created to reflect the change or it can just be merged in the existing branch.
 
-**_Note_**: *In spite of the fact that this branch's main purpose is showing the progress in a review, it is not advised to send a version from that branch. In these cases you should talk to project or company referents.*
+**_Note_**: *Despite the fact that this branch's main purpose is showing the progress in a review, it is not advised to send a version from that branch. In these cases you should talk to project or company referents.*
 
 *This branch can be deployed in an environment previous to staging such as development. See: Environment management base on the git workflow (work in progress).*
 
