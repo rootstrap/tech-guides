@@ -5,53 +5,70 @@ prescriptions for Python developmen that mostly applies for Django.
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [A Foolish Consistency is the Hobgoblin of Little Minds](#a-foolish-consistency-is-the-hobgoblin-of-little-minds)
-* [Code Lay-out](#code-lay-out)
-  * [Indentation](#indentation)
-  * [Tabs or Spaces?](#tabs-or-spaces?)
-  * [Maximum Line Length](#maximum-line-length)
-  * [Should a Line Break Before or After a Binary Operator?](#should-a-line-break-before-or-after-a-binary-operator?)
-  * [Blank Lines](#blank-lines)
-  * [Source File Encoding](#source-file-enconding)
-  * [Imports](#imports)
-  * [Module Level Dunder Names](#module-level-dunder-names)
-* [String Quotes](#string-quotes)
-* [Whitespace in Expressions and Statements](#whitespace-in-expressions-and-statements)
-  * [Pet Peeves](#pet-peeves)
-  * [Other Recommendations](#other-recommendations)
-* [When to Use Trailing Commas](#when-to-use-trailing-commas)
-* [Comments](#comments)
-  * [Block Comments](#block-comments)
-  * [Inline Comments](#inline-comments)
-  * [Documentation Strings](#documentation-strings)
-  * [Naming Conventions](#naming-conventions)
-  * [Overriding Principle](#overriding-principle)
-  * [Descriptive: Naming Styles](#descriptive:-naming-styles)
-    * [Prescriptive: Naming Conventions](#prescriptive:-naming-conventions)
-    * [Names to Avoid](#names-to-avoid)
-    * [ASCII Compatibility](#ascii-compatibility)
-    * [Package and Module Names](#package-and-module-names)
-    * [Class Names](#class-names)
-    * [Type Variable Names](#type-variable-names)
-    * [Exception Names](#exception-names)
-    * [Global Variable Names](#global-variable-names)
-    * [Function and Variable Names](#function-and-variable-names)
-    * [Function and Method Arguments](#function-and-method-arguments)
-    * [Method Names and Instance Variables](#method-names-and-instance-variables)
-    * [Constants](#constants)
-    * [Designing for Inheritance](#designing-for-inheritance)
-  * [Public and Internal Interfaces](#public-and-internal-interfaces)
-* [Programming Recommendations](#programming-recommendations)
-  * [Function Annotations](#function-annotations)
-  * [Variable Annotations](#variable-annotations)
-* [Django](#django)
-  * [Suggested project scaffolding](#suggested-project-scaffolding)
-  * [Viewsets](#viewsets)
-* [References](#references)
-* [Naming standards for unit tests](#naming-standards-for-unit-tests)
-* [Virtualenv](#virtualenv)
-* [Copyright](#copyright)
+- [Prelude](#prelude)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [A Foolish Consistency is the Hobgoblin of Little Minds](#a-foolish-consistency-is-the-hobgoblin-of-little-minds)
+  - [Code Lay-out](#code-lay-out)
+    - [Indentation](#indentation)
+- [More indentation included to distinguish this from the rest.](#more-indentation-included-to-distinguish-this-from-the-rest)
+    - [Tabs or Spaces?](#tabs-or-spaces)
+    - [Maximum Line Length](#maximum-line-length)
+    - [Should a Line Break Before or After a Binary Operator?](#should-a-line-break-before-or-after-a-binary-operator)
+- [No: operators sit far away from their operands](#no-operators-sit-far-away-from-their-operands)
+    - [Blank Lines](#blank-lines)
+    - [Source File Encoding](#source-file-encoding)
+    - [Imports](#imports)
+    - [Module Level Dunder Names](#module-level-dunder-names)
+  - [String Quotes](#string-quotes)
+  - [Whitespace in Expressions and Statements](#whitespace-in-expressions-and-statements)
+    - [Pet Peeves](#pet-peeves)
+    - [Other Recommendations](#other-recommendations)
+  - [When to Use Trailing Commas](#when-to-use-trailing-commas)
+  - [Comments](#comments)
+    - [Block Comments](#block-comments)
+    - [Inline Comments](#inline-comments)
+    - [Documentation Strings](#documentation-strings)
+  - [Naming Conventions](#naming-conventions)
+    - [Overriding Principle](#overriding-principle)
+    - [Descriptive: Naming Styles](#descriptive-naming-styles)
+    - [Prescriptive: Naming Conventions](#prescriptive-naming-conventions)
+      - [Names to Avoid](#names-to-avoid)
+      - [ASCII Compatibility](#ascii-compatibility)
+      - [Package and Module Names](#package-and-module-names)
+      - [Class Names](#class-names)
+      - [Type Variable Names](#type-variable-names)
+      - [Exception Names](#exception-names)
+      - [Global Variable Names](#global-variable-names)
+      - [Function and Variable Names](#function-and-variable-names)
+      - [Function and Method Arguments](#function-and-method-arguments)
+      - [Method Names and Instance Variables](#method-names-and-instance-variables)
+      - [Constants](#constants)
+      - [Designing for Inheritance](#designing-for-inheritance)
+    - [Public and Internal Interfaces](#public-and-internal-interfaces)
+  - [Programming Recommendations](#programming-recommendations)
+    - [Function Annotations](#function-annotations)
+    - [Variable Annotations](#variable-annotations)
+  - [Naming standards for unit tests](#naming-standards-for-unit-tests)
+    - [Reasons:](#reasons)
+      - [Test name should express a specific requirement](#test-name-should-express-a-specific-requirement)
+      - [Test name should include the expected input or state and the expected result for that input or state](#test-name-should-include-the-expected-input-or-state-and-the-expected-result-for-that-input-or-state)
+      - [Test name should be presented as a statement or fact of life that expresses workflows and outputs](#test-name-should-be-presented-as-a-statement-or-fact-of-life-that-expresses-workflows-and-outputs)
+      - [Test Name should only begin with Test if it is required by the testing framework or if it eases development and maintenance of the unit tests in some way.](#test-name-should-only-begin-with-test-if-it-is-required-by-the-testing-framework-or-if-it-eases-development-and-maintenance-of-the-unit-tests-in-some-way)
+      - [Test name should include name of tested method or class](#test-name-should-include-name-of-tested-method-or-class)
+      - [Naming Variables in a test:](#naming-variables-in-a-test)
+  - [virtualenv](#virtualenv)
+    - [Verify if Virtualenv is installed](#verify-if-virtualenv-is-installed)
+    - [Create a virtual environment for a project](#create-a-virtual-environment-for-a-project)
+    - [Activating a virtualenv](#activating-a-virtualenv)
+    - [Leaving the virtualenv](#leaving-the-virtualenv)
+    - [VirtualenvWrapper](#virtualenvwrapper)
+        - [NOTE:](#note)
+- [Django](#django)
+  - [Suggested project scaffolding](#suggested-project-scaffolding)
+  - [Viewsets](#viewsets)
+  - [References](#references)
+  - [Copyright](#copyright)
 
 ## Introduction
 
@@ -1395,12 +1412,16 @@ router.register(r'mymodel', MyModelViewSet, base_name='mymodel')
 urlpatterns = router.urls
 ```
 
-This code adds a set of URLs into your urlpatterns in the form `<base_name>-list/`. For example:
-- `GET mymodel-list/` will point to MyModelViewSet.list
-- `POST mymodel-list/` will point to MyModelViewSet.create
-- `PUT mymodel-list/` will point to MyModelViewSet.update
+This code adds a set of URLs into your urlpatterns in the form `<base_name>/`. For example:
+- `GET mymodel/` will point to MyModelViewSet.list
+- `POST mymodel/` will point to MyModelViewSet.create
+- `GET mymodel/<id>/` will point to MyModelViewSet.retrieve to get the data from the instance of the corresponding `<id>`.
+- `PUT mymodel/<id>/` will point to MyModelViewSet.update to update the instance of the corresponding `<id>`
+- `DELETE mymodel/<id>/` will point to MyModelViewSet.destroy to delete the instance of the corresponding `<id>`
 
-And so on. You can even customize the permissions, and/or the use of serializers overwriting the `get_permissions` and/or the `get_serializer` functions of the MyModelViewSet class respectively, for example:
+The default view name will be `mymodel-list` for the methods of all the instances (without `id`), and `mymodel-detail` for the methods of particular instances (with `id`).
+
+You can even customize the permissions, and/or the use of serializers overwriting the `get_permissions` and/or the `get_serializer` functions of the MyModelViewSet class respectively, for example:
 
 ```python
 ...
@@ -1429,6 +1450,50 @@ class MyModelViewSet(viewsets.ModelViewSet):
 
 ```
 
+You can also add more actions, with the `action` decorator, specifiying the available `methods` (by default is GET), and if you want to apply the action to a particular instance (`detail=True`) or all the instances (`detail=False`). Let's see an example:
+
+```python
+...
+...
+
+class MyModelViewSet(viewsets.ModelViewSet):  
+    ...
+
+    @action(detail=True, methods=['post'])
+    def my_action_1(self, request, pk=None):  # Needs a pk because detail=True
+        ... # Some code for the action over a particular instance
+
+    @action(detail=False)  # By default is the GET action, there's no pk because detail=False
+    def my_action_2(self, request):
+        ...  # Some code for the action over all the instances (you can customize the set of instances)
+    
+    ...
+```
+
+The `action` decorator also allows to set `permission_classes` for a particular action. For example:
+
+```python
+    ... # ModelViewSet class
+    @action(detail=True, methods=['put'], permission_classes=[IsAdminOrIsSelf])
+    def my_action_3(self, request, pk=None):
+        ...
+```
+
+Following the previous examples of actions in viewsets, we can affirm that they will be available in the next URLs:
+- `my_action_1`: `mymodel/<id>/my_action_1/` and the default name: `mymodel-my-action-1`
+- `my_action_2`: `mymodel/my_action_2/` and the default name: `mymodel-my-action-2`
+
+Besides, it's possible to change these default values, specifying `url_path` and `url_name` in the action decorator. For example:
+
+```python
+    ... # ModelViewSet class
+    @action(methods=['post'], detail=True, url_path='my-path', url_name='my_url_name')
+    def my_action_4(self, request, pk=None):
+        ...
+    ...
+```
+
+Will generate this URL path: `mymodel/<id>/my-path` and this URL name: `mymodel-my_url_name`
 
 
 ## References
