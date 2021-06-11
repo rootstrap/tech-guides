@@ -17,7 +17,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 ### Languages
 
 * [Ruby](./ruby)
-* [Swift](./swift)
+* [Swift](https://rootstrap.github.io/swift/)
 * [Javascript](https://github.com/airbnb/javascript)
 * [CSS](./css.md)
 * [Python](./python)
