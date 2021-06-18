@@ -8,5 +8,6 @@
 4. [Security Practices](#4-security-best-practices)
 5. [Performance Practices](#5-draft-performance-best-practices)
 6. [Express Specifics](#6-express-specifics-best-practices)
+7. [Code Quality and Complexity Management](#8-quality-complexity)
 
 <br/><br/>
