@@ -2,8 +2,6 @@
 
 - Check well known guide [Javascript Airbnb](https://github.com/airbnb/javascript)
 
-This
-
 ## Table of Contents
 
 1. [General Concepts](#1-general-concepts-best-practices)
