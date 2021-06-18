@@ -54,7 +54,7 @@ In order to deploy a new project into Heroku, most of these conditions should be
     * Logging:
         * Papertrail
 * There are no DevOps hours allocated to the project
-* There is no available [Reference Architecture](https://www.notion.so/rootstrap/Reference-Architectures) for AWS that fits the needs of the project
+* There is no available [Reference Architecture](https://www.notion.so/rootstrap/AWS-Architecture-5e8083e3968a45de9e240885a31921be) for AWS that fits the needs of the project
 
 ### When to move to AWS 
 
