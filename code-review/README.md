@@ -30,7 +30,7 @@ Having Your Code Reviewed
 - Don't take it personally. The review is of the code, not you.
 - Explain why the code exists. ("It's like that because of these reasons. Would it be more clear if I rename this class/file/method/variable?")
 - Link to the code review from the ticket/story. ("Ready for review: https://github.com/organization/project/pull/1")
-- Push commits based on earlier rounds of feedback as isolated commits to the branch. Do not squash until the branch is ready to merge. Reviewers should be able to read individual updates based on their earlier feedback.
+- If you want to push commits of feedback isolated, you can do it but you need to squash them before merging, the commits should follow the [commits standard](./../git/commits.md)
 - Seek to understand the reviewer's perspective.
 - One of the reviewers or you can merge once:
   - Continuous Integration (CircleCi, TravisCi, etc) tells you the test suite is green in the branch.
