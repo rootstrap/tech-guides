@@ -54,7 +54,7 @@ Gzip compressing can greatly decrease the size of the response body and hence in
 
 ## 5.2. Do not use console.log
 
-Not for the obvious reasons, but because console.log are synchronous when the destination is a terminal or a file, so they are not suitable for production, unless you pipe the output to another program.
+Not for the obvious reasons, but because console.log is synchronous when the destination is a terminal or a file, so it is not suitable for production unless you pipe the output to another program.
 
 **GTK:** Use a more mature logger like Winston or Bunyan
 
