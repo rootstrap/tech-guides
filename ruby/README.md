@@ -4174,10 +4174,10 @@ this guide.
 
 ### RuboCop
 
-[RuboCop][] is a Ruby code style
+[RuboCop][https://github.com/rubocop/rubocop] is a Ruby code style
 checker based on this style guide. RuboCop already covers a
-significant portion of the Guide, supports both MRI 1.9 and MRI 2.0
-and has good Emacs integration.
+significant portion of the Guide, supports both MRI 2.5+ and JRuby 9.2+
+and has good Emacs and VSCode integration.
 
 ### RubyMine
 
