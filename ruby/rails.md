@@ -1389,7 +1389,7 @@ https://guides.rubyonrails.org/debugging_rails_applications.html#impact-of-logs-
 
  ```Ruby
   # bad
-  Rails.logger.debug "Person attributes hash: #{@person.attributes.inspect}"
+  Rails.logger.debug("Person attributes hash: #{@person.attributes.inspect}")
 
   # good
   Rails.logger.debug { "Person attributes hash: #{@person.attributes.inspect}" }
