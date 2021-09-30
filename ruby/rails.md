@@ -35,6 +35,7 @@ it is.
 * [Time](#time)
 * [Bundler](#bundler)
 * [Managing processes](#managing-processes)
+* [Logging](#logging)
 
 ## Configuration
 
@@ -1380,6 +1381,19 @@ pets.include? 'cat'
   [foreman](https://github.com/ddollar/foreman) to manage them.
 <sup>[[link](#foreman)]</sup>
 
+## Logging
+
+When logging lot of output you can use a block as param instead of a string, specially if you have interpolated values. This avoids the cost of instantiating the unnecessary String objects if the allowed output level doesn't include that level.
+
+https://guides.rubyonrails.org/debugging_rails_applications.html#impact-of-logs-on-performance
+
+ ```Ruby
+  # bad
+  Rails.logger.debug "Person attributes hash: #{@person.attributes.inspect}"
+
+  # good
+  Rails.logger.debug { "Person attributes hash: #{@person.attributes.inspect}" }
+```
 
 # References
 
