@@ -12,7 +12,7 @@ This is a guide for publishing and maintaining open source projects, check the G
 - License (default: [MIT](https://opensource.org/licenses/MIT))
 - Code of Conduct (default: [Contributor Covenant](https://www.contributor-covenant.org/))
 - Contributing: We follow the [Rootstrap Contributing Guide](./rootstrap_contributing_guide.md)
-- Continuous Integration (default: [TravisCI](https://travis-ci.org))
+- Continuous Integration (default: [Github Actions](https://github.com/features/actions))
 - Code Quality tools (default: [CodeClimate](https://codeclimate.com))
 - Readme with: Description, Prerequisites/Installation, Usage, Company credits and links to items above (template: [README example](./OSS_README_example.md))
 - Follow [semver](https://semver.org/) for good versioning. Start with version `0.1` and once it has been successfully used in at least one project upgrade to `1.0`. Generate a new git tag when releasing a new version.

@@ -1,6 +1,7 @@
 # [lib_name]
 
-[![Build Status](https://travis-ci.org/rootstrap/[lib_name].svg?branch=master)](https://travis-ci.org/rootstrap/[lib_name])
+
+![Build Status](https://github.com/rootstrap/[lib_name]/workflows/CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/[token]/maintainability)](https://codeclimate.com/github/rootstrap/[lib_name]/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/[token]/test_coverage)](https://codeclimate.com/github/rootstrap/[lib_name]/test_coverage)
 

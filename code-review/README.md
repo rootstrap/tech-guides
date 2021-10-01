@@ -33,7 +33,7 @@ Having Your Code Reviewed
 - Push commits based on earlier rounds of feedback as isolated commits to the branch. Do not squash until the branch is ready to merge. Reviewers should be able to read individual updates based on their earlier feedback.
 - Seek to understand the reviewer's perspective.
 - One of the reviewers or you can merge once:
-  - Continuous Integration (CircleCi, TravisCi, etc) tells you the test suite is green in the branch.
+  - Continuous Integration (CircleCi, Github Actions, etc) tells you the test suite is green in the branch.
   - Two reviewers approved the PR
 
 Reviewing Code
