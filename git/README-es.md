@@ -2,7 +2,7 @@
 
 En nuestro trabajo diario aplicamos diferentes guías de estilos y estandarizaciones que nos ayudan a tener un criterio unificado en relacion a diferentes tecnologías. El objetivo de este documento es crear un estándar a nivel empresa para el workflow de git en los diferentes proyectos.
 
-Los lineamientos descriptos en este documento tienen variadas ventajas. Entre ellas, nos permite manejar la misma nomenclatura facilitando la incorporación de otros integranes al equipo y promueve la mejor organización de los proyectos. Asimismo, ayuda a definir soluciones para algunos problemas habituales. Finalmente, el workflow planteado esta enfocado a mantener un historial confiable que refleje el estado del proyecto.
+Los lineamientos descriptos en este documento tienen variadas ventajas. Entre ellas, nos permite manejar la misma nomenclatura facilitando la incorporación de otros integrantes al equipo y promueve la mejor organización de los proyectos. Asimismo, ayuda a definir soluciones para algunos problemas habituales. Finalmente, el workflow planteado esta enfocado a mantener un historial confiable que refleje el estado del proyecto.
 
 A continuación, listaremos el contenido de este documento. Algunos de los lineamientos son de carácter obligatorio y deben ser seguidos en el desarrollo de cualquier proyecto. Los contenidos de carácter obligatorio serán resaltados con la etiqueta  **[Required]**. Si bien el resto de los lineamientos no son obligatorios, son altamente recomendables.
 
@@ -132,7 +132,7 @@ Esta branch tiene dos objetivos:
 1. No afectar el proceso de code review.
 2. Mostrar el avance del equipo en la review con el cliente.
 
-Branch temporal creada a partir de develop en la cual se mergea el contenido de otras branches que aún no estan prontas para ser integradas a develop. El unico proposito de esta branch es enteramente dedicado a la demo, por lo que debe ser descartada inmediatamente despues de la realizacion de la misma.
+Branch temporal creada a partir de develop en la cual se mergea el contenido de otras branches que aún no estan prontas para ser integradas a develop. El único propósito de esta branch es enteramente dedicado a la demo, por lo que debe ser descartada inmediatamente despues de la realización de la misma.
 
 * **Origen:** *develop*
 * **Destino:** - (borrar branch)
@@ -154,7 +154,7 @@ Si se realizan cambios en las branches, se puede mergear de nuevo ese cambio en 
 
 En esta sección se explica el manejo de cada una de las branches involucradas en el proceso de desarrollo post salida a producción.
 
-A no ser que la branch sea nuevamente explicada en esta sección, las anteriores branches detalladas en la sección *Previo salir a producción*, deben seguir siendo utilizadas de la misma manera
+A no ser que la branch sea nuevamente explicada en esta sección, las anteriores branches detalladas en la sección *Previo salir a producción*, deben seguir siendo utilizadas de la misma manera.
 
 Con el manejo de branches detallado a continuación, se busca mantener el historial de commits, siempre y cuando sea posible.
 Por esta razón, para poder mantener las branches actualizadas entre si, no se utilizan enfoques clásicos basados en el uso de *cherry-pick* y *merge*. De lo contrario, se prioriza el uso de *rebase*.
@@ -266,7 +266,7 @@ Ver [https://help.github.com/articles/creating-releases/](https://help.github.co
 * **Título:** Release sprint x, donde x es el número del sprint.
 * **Descripción:** detalle de las funcionalidades desarrolladas durante desarrollo.
 
-_Nota: el manejo de releases previo salir a produccion es altamente recomendado pero no obligatorio._
+_Nota: el manejo de releases previo salir a producción es altamente recomendado pero no obligatorio._
 
 
 ## Post salida a producción **[Required]**
