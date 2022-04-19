@@ -160,7 +160,7 @@ For example, let's say you have:
 - Then the value for `DATABASE_URL` would be: `DATABASE_URL=postgres://postgres:postgres@localhost:5432/cookiecutter_starter-db-dev`
 
 IMPORTANT SUGGESTION:
-- For critical or sensitive information/credentials please use an ENV var in `.env` file and add it also to `.env.example` for consistence.
+- For critical or sensitive information/credentials please use an ENV var in `.env` file and add it also to `.env.example` for consistency. Also set the definition of the env var in the config file without the `default` parameter.
 
 ### Important Note
 For the next commands, we will assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`
