@@ -159,6 +159,9 @@ For example, let's say you have:
 - A created db named `cookiecutter_starter-db-dev`, and a user `postgres` with password `postgres` 
 - Then the value for `DATABASE_URL` would be: `DATABASE_URL=postgres://postgres:postgres@localhost:5432/cookiecutter_starter-db-dev`
 
+IMPORTANT SUGGESTION:
+- For critical or sensitive information/credentials use an environment variable in `.env` file and add it also to `.env.example` for consistency. Also, set the definition of the env var in the config file without the `default` parameter.
+
 ### Important Note
 For the next commands, we will assume that you are in the root folder, and you have already entered to the sell with `$ pipenv shell`
 
@@ -213,7 +216,7 @@ extend-ignore = E203, W503
 #  pyproject.toml
 
 [tool.black]
-skip_string_normalization = true
+skip_string_normalization = false
 line-length = 120
 exclude = '.*\/(migrations|settings)\/.*'
 ```
