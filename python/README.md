@@ -67,6 +67,7 @@ prescriptions for Python developmen that mostly applies for Django.
 - [Django](#django)
   - [Suggested project scaffolding](#suggested-project-scaffolding)
   - [Viewsets](#viewsets)
+  - [Deploy to Heroku (First time)](#deploy-to-heroku-first-time)
   - [References](#references)
   - [Copyright](#copyright)
 
@@ -1495,15 +1496,43 @@ Besides, it's possible to change these default values, specifying `url_path` and
 
 Will generate this URL path: `mymodel/<id>/my-path` and this URL name: `mymodel-my_url_name`
 
+## Deploy to Heroku (First time)
+If you have created the project with Django-Cookiecutter and you want to deploy the project in Heroku[7], you can follow these
+steps:
+
+1. Go to the Heroku Dashboard and create a new app (Clicking on New/Create new app). If this is a deploy for the production environment, make sure you are in the client's organization.
+2. Open the created app in Heroku and go to the Resources tab. Then add the corresponding addons (examples: Heroku-Postgres, Heroku-Redis, etc).
+3. Go to the Settings tab of the app in Heroku and click on Reveal Config Vars. Add there all the mandatory env vars. Examples of the most common needed env vars:
+  - `DJANGO_SECRET_KEY`
+  - `DJANGO_ADMIN_URL` (For security reasons don't set the admin path as `/admin/`. Use a random generated value)
+  - `DATABASE_URL` (If you use the Heroku-Postgres addon, this env var is automatically added by Heroku)
+  - `DJANGO_SETTINGS_MODULE` (set it for production config file)
+  - `DJANGO_DEBUG` (set it to False)
+  - `DJANGO_ALLOWED_HOSTS` (set it to the host name of the app)
+4. On your computer, go to the project folder on the terminal and add the git repository URL of the app as a remote repository: `git remote add <remote-name> <heroku-app-url>`
+5. Then go to the branch you want to deploy with git: `git checkout <my-branch>`
+6. Push the branch to the remote repository recently added: `git push <remote-name> <my-branch>`
+7. If everything goes well, you have done the first deploy to Heroku of your Django project. Now you can integrate the app in the Heroku Dashboard, by opening the app, then clicking on the Deploy tab, then selecting Github in the Deploy method section, and then choosing the Github project. After this, if you want to make a new deploy:
+   1. Go to the Deploy tab in your app on the Heroku Dashboard.
+   2. In Manual Deploy, write the name of the branch you want to deploy.
+   3. Click on Deploy Branch button.
+
+Notes
+- To see the remote URL in heroku, go to the project, Settings tab, and check the `Heroku git URL` value.
+- You can generate a value for the `DJANGO_SECRET_KEY` env var with the command: `openssl rand -base64 64`
+- You can generate a value for the `DJANGO_ADMIN_URL` env var with the command: `openssl rand -base64 4096 | tr -dc 'A-HJ-NP-Za-km-z2-9' | head -c 32`
+
+
 
 ## References
 
-[1] [PEP 7](https://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
-[2] Barry's GNU Mailman style guide http://barry.warsaw.us/software/STYLEGUIDE.txt
-[3] Donald Knuth's The TeXBook, pages 195 and 196.
-[4] http://www.wikipedia.com/wiki/CamelCase
-[5] Typeshed repo https://github.com/python/typeshed
-[6] Suggested syntax for Python 2.7 and straddling code https://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code
+1. [PEP 7](https://www.python.org/dev/peps/pep-0007), Style Guide for C Code, van Rossum
+2. Barry's GNU Mailman style guide, http://barry.warsaw.us/software/STYLEGUIDE.txt
+3. Donald Knuth's The TeXBook, pages 195 and 196.
+4. CamelCase, http://www.wikipedia.com/wiki/CamelCase
+5. Typeshed repo, https://github.com/python/typeshed
+6. Suggested syntax for Python 2.7 and straddling code, https://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code
+7. Django-Cookiecutter, Deploy to Heroku, https://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html
 
 ## Copyright
 
