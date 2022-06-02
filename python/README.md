@@ -1369,8 +1369,8 @@ def calculate_circumference(radius: float) -> float:
 
 ### Cons of typing hints
 
-* Will take developer time and effort to add.
-* Work best in modern versions of Python. Python 2.7 could use typed comments, but it were introduced since Python 3.0.
+* Will take developer time and effort to add it.
+* Work best in modern versions of Python. Python 2.7 could use typed comments, but it was introduced in Python 3.0.
 * It could introduce a slight penalty in start-up time, specially in short scripts if you need to use `import typing` module.
 
 ### Typing: please remember
