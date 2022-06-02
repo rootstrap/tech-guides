@@ -630,10 +630,12 @@ You will see something like this in your app urls.py:
 
 ```python
 # config/urls.py
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
 ...
 
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 urlpatterns = [
+  ...
     # YOUR PATTERNS
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
     # This will download a .yaml file with your api schema
@@ -641,8 +643,6 @@ urlpatterns = [
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'),   name='api-docs'),
     # This will enable an UI to show your api schema in HTML.
 ]
-
-...
 ```
 
 The UI views will be like the following images:
@@ -659,6 +659,71 @@ In every endpoint you will see a description of the response and the params allo
 </details>
 
 This library is also extra customizable. You could use the `@extend_schema` decorator to customize APIView, Viewsets, function-based views, and @action. This decorator will allow you to add additional parameters or customize the existing ones (description, types), override request/response serializers, and more!
+
+<details>
+  <summary>@extend_schema decorator example <i>(Click &#x25B6; to display example)</i></summary>
+
+Example extracted from drf-spectacular documentation.
+
+```python
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
+
+class AlbumViewset(viewset.ModelViewset):
+    serializer_class = AlbumSerializer
+
+    @extend_schema(
+        request=AlbumCreationSerializer,
+        responses={201: AlbumSerializer},
+    )
+    def create(self, request):
+        # your non-standard behaviour
+        return super().create(request)
+
+    @extend_schema(
+        # extra parameters added to the schema
+        parameters=[
+            OpenApiParameter(name='artist', description='Filter by artist', required=False, type=str),
+            OpenApiParameter(
+                name='release',
+                type=OpenApiTypes.DATE,
+                location=OpenApiParameter.QUERY,
+                description='Filter by release date',
+                examples=[
+                    OpenApiExample(
+                        'Example 1',
+                        summary='short optional summary',
+                        description='longer description',
+                        value='1993-08-23'
+                    ),
+                    ...
+                ],
+            ),
+        ],
+        # override default docstring extraction
+        description='More descriptive text',
+        # provide Authentication class that deviates from the views default
+        auth=None,
+        # change the auto-generated operation name
+        operation_id=None,
+        # or even completely override what AutoSchema would generate. Provide raw Open API spec as Dict.
+        operation=None,
+        # attach request/response examples to the operation.
+        examples=[
+            OpenApiExample(
+                'Example 1',
+                description='longer description',
+                value=...
+            ),
+            ...
+        ],
+    )
+    def list(self, request):
+        # your non-standard behaviour
+        return super().list(request)
+```
+
+</details>
 
 Please check the [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) documentation to find out more about it.
 
