@@ -617,6 +617,50 @@ The internal organization of the structure of an app could depend on the differe
 
 </details>
 
+## Drf-spectacular
+
+This [library](https://drf-spectacular.readthedocs.io/en/latest/) is a sane and flexible [OpenAPI 3.0](https://spec.openapis.org/oas/v3.0.3) schema generation for Django REST framework.
+It is already installed and configured by default in the creation of a Cookiecutter project in Django.
+The project has 3 important goals:
+* Extract as much schema information from DRF as possible.
+* Provide flexibility to make the schema usable in the real world (not only toy examples).
+* Generate a schema that works well with the most popular client generators.
+
+You will see something like this in your app urls.py:
+
+```python
+# config/urls.py
+...
+
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+urlpatterns = [
+    # YOUR PATTERNS
+    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    # This will download a .yaml file with your api schema
+    # Optional UI:
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'),   name='api-docs'),
+    # This will enable an UI to show your api schema in HTML.
+]
+
+...
+```
+
+The UI views will be like the following images:
+<details>
+  <summary>Images <i>(Click &#x25B6; to display the images)</i></summary>
+Generally it will be like this:
+
+![DRF-spectacular UI](images/drf-spectacular-1.png)
+
+In every endpoint you will see a description of the response and the params allowed.
+
+![DRF-spectacular detail](images/drf-spectacular-2.png)
+
+</details>
+
+This library is also extra customizable. You could use the `@extend_schema` decorator to customize APIView, Viewsets, function-based views, and @action. This decorator will allow you to add additional parameters or customize the existing ones (description, types), override request/response serializers, and more!
+
+Please check the [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) documentation to find out more about it.
 
 ## Final
 
