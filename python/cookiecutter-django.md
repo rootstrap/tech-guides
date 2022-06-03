@@ -652,7 +652,7 @@ Generally it will be like this:
 
 ![DRF-spectacular UI](images/drf-spectacular-1.png)
 
-In every endpoint you will see a description of the response and the params allowed.
+In every endpoint, you will see a description of the response and the parameters allowed. Even you can use the endpoint from this web interface.
 
 ![DRF-spectacular detail](images/drf-spectacular-2.png)
 
