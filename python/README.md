@@ -1330,7 +1330,7 @@ https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
 ## Typing hints
 
-Python by default is a dinamically typed language but there is also some static typed languages, for instance C and Java. However, [PEP 484](https://peps.python.org/pep-0484/) introduced typed hints, which make it possible to also do static type checking of Python code. Type hints by themselves don’t cause Python to enforce types. As the name says, type hints just suggest types. There are other tools, such as [Mypy](http://mypy-lang.org/), that will be discuss later in this section.
+Python by default is a dynamically typed language but there are also some statically typed languages, for instance, C and Java. However, [PEP 484](https://peps.python.org/pep-0484/) introduced typed hints, which make it possible to also do static type checking of Python code. Type hints by themselves don’t cause Python to enforce types. As the name says, type hints just suggest types. There are other tools, such as [Mypy](http://mypy-lang.org/), that will be discussed later in this section.
 
 Here you will see a few examples of python code, this is how it will normally looks, no typing at all:
 
@@ -1365,7 +1365,7 @@ def calculate_circumference(radius: float) -> float:
 * Helps you catch certain errors by improving IDEs and linters.
 * Helps you document your code, changes doctstrings with types to a self documented code. 
 * Build and mantain a cleaner architecture. This will enforce you to think about types in your code.
-* In bigger projects, type hints help you understand how types flow through your code, and are highly recommended. Even more so in projects where there is a lot of people involved.
+* In bigger projects, type hints help you understand how types flow through your code, and are highly recommended. Even more so in projects where there are a lot of people involved.
 
 ### Cons of typing hints
 
