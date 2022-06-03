@@ -623,7 +623,7 @@ This [library](https://drf-spectacular.readthedocs.io/en/latest/) is a sane and 
 It is already installed and configured by default in the creation of a Cookiecutter project in Django.
 The project has 3 important goals:
 * Extract as much schema information from DRF as possible.
-* Provide flexibility to make the schema usable in the real world (not only toy examples).
+* Provide flexibility to make the schema usable in the real world (not only toy examples). It is relevant to mention here that a commonly used tool at RootStrap is [Apiary](https://apiary.io/). This tool supports [OpenAPI schemas](https://help.apiary.io/swagger/).
 * Generate a schema that works well with the most popular client generators.
 
 You will see something like this in your app urls.py:
