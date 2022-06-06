@@ -1332,7 +1332,9 @@ https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
 
 Python by default is a dynamically typed language but there are also some statically typed languages, for instance, C and Java. However, [PEP 484](https://peps.python.org/pep-0484/) introduced typed hints, which make it possible to also do static type checking of Python code. Type hints by themselves don’t cause Python to enforce types. As the name says, type hints just suggest types. There are other tools, such as [Mypy](http://mypy-lang.org/), that will be discussed later in this section.
 
-Here you will see a few examples of python code, this is how it will normally looks, no typing at all:
+Here at Rootstrap, we suggest you use typing for functions (params and outputs). It is not necessary to use it in variable annotations (as described in [PEP 526](https://peps.python.org/pep-0526/)). We prefer to use typing as a guide for data type flow in our apps.
+
+Now you will see a few examples of python code, this is how it will normally looks, no typing at all:
 
 ```python
 import math
