@@ -64,6 +64,10 @@ prescriptions for Python developmen that mostly applies for Django.
     - [Leaving the virtualenv](#leaving-the-virtualenv)
     - [VirtualenvWrapper](#virtualenvwrapper)
         - [NOTE:](#note)
+  - [Typing hints](#typing-hints)
+    - [Pros of typing hints](#pros-of-typing-hints)
+    - [Cons of typing hints](#cons-of-typing-hints)
+    - [Typing: please remember](#typing-please-remember)
 - [Django](#django)
   - [Suggested project scaffolding](#suggested-project-scaffolding)
   - [Viewsets](#viewsets)
@@ -1323,6 +1327,57 @@ $ add2virtualenv <dir1> [dir2, dir3, ...]
 ```
 for further reading you can consult the docs.
 https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
+
+## Typing hints
+
+Python by default is a dynamically typed language but there are also some statically typed languages, for instance, C and Java. However, [PEP 484](https://peps.python.org/pep-0484/) introduced typed hints, which make it possible to also do static type checking of Python code. Type hints by themselves don’t cause Python to enforce types. As the name says, type hints just suggest types. There are other tools, such as [Mypy](http://mypy-lang.org/), that will be discussed later in this section.
+
+Here at Rootstrap, we suggest you use typing for functions (params and outputs). It is not necessary to use it in variable annotations (as described in [PEP 526](https://peps.python.org/pep-0526/)). We prefer to use typing as a guide for data type flow in our apps.
+
+Now you will see a few examples of python code, this is how it will normally looks, no typing at all:
+
+```python
+import math
+
+def calculate_circumference(radius):
+    return 2 * math.pi * radius
+```
+
+Now this is how a code with type comments will look like:
+
+```python
+import math
+
+def calculate_circumference(radius):
+    # type: (float) -> float
+    return 2 * math.pi * radius
+```
+
+And finally how a typed hint code will look like:
+
+```python
+import math
+
+def calculate_circumference(radius: float) -> float:
+    return 2 * math.pi * radius
+```
+
+### Pros of typing hints
+
+* Helps you catch certain errors by improving IDEs and linters.
+* Helps you document your code, changes doctstrings with types to a self documented code. 
+* Build and mantain a cleaner architecture. This will enforce you to think about types in your code.
+* In bigger projects, type hints help you understand how types flow through your code, and are highly recommended. Even more so in projects where there are a lot of people involved.
+
+### Cons of typing hints
+
+* Will take developer time and effort to add it.
+* Work best in modern versions of Python. Python 2.7 could use typed comments, but it was introduced in Python 3.0.
+* It could introduce a slight penalty in start-up time, specially in short scripts if you need to use `import typing` module.
+
+### Typing: please remember
+
+This typing concepts does not mean you HAVE to use static type checking in your code, there is a concept call [Gradual typing in PEP 483](https://peps.python.org/pep-0483/#summary-of-gradual-typing). This means that you can gradually introduce types into the code. Code without type hints will be ignored by the static type checker. Therefore, you can start adding types to critical components.
 
 # Django
 To start a new Django project, we recomend to use [Django-Cookiecutter](https://github.com/pydanny/cookiecutter-django). Please go to our [guide to start a Django project](./cookiecutter-django.md) using this tool.
