@@ -257,6 +257,7 @@ Note: the first commit after running step 2 will take a while but after that it 
 ### [mypy](https://mypy.readthedocs.io/en/stable/)
 *NOTE: By default, this package is already installed but it is NOT a stage added to pre-commit or Github Actions.*
 First, take a look at [typing hints](https://github.com/rootstrap/tech-guides/tree/master/python#typing-hints) document in the Python section of the tech guides.
+Cookiecutter already configures Mypy in `setup.cfg` file, if you need to change any of these configurations, please check the `[mypy]` section in this file.
 Adding this typing hint check library to pre-commit or GitHub Workflow Actions is optional, it depends on your project scope.
 If you add Mypy to pre-commit it will check the typing in the files you change on your commit, to add Mypy to pre-commit you will need to add something like the following: 
 <details>
