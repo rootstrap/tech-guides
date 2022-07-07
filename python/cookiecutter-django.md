@@ -256,6 +256,7 @@ Note: the first commit after running step 2 will take a while but after that it 
 
 ### [mypy](https://mypy.readthedocs.io/en/stable/)
 *NOTE: By default, this package is already installed but it is NOT a stage added to pre-commit or Github Actions.*
+First, take a look at [typing hints](https://github.com/rootstrap/tech-guides/tree/master/python#typing-hints) document in the Python section of the tech guides.
 Adding this typing hint check library to pre-commit or GitHub Workflow Actions is optional, it depends on your project scope.
 If you add Mypy to pre-commit it will check the typing in the files you change on your commit, to add Mypy to pre-commit you will need to add something like the following: 
 <details>
@@ -342,7 +343,7 @@ plugins:
 
 ### GitHub Workflow
 
-1. Create the path `.github/workflows` and inner it the file `python-app.yml` with the following content.
+1. Create the path `.github/workflows` and inner it the file `python-app.yml` (or any file name you want as long it is in this folder) with the following content.
 2. Create a project secret to use it at the config file. [guide](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
     - Name: `CC_TEST_REPORTER_ID`
     - Value: `Test Coverage ID`
