@@ -280,6 +280,8 @@ You may need more configuration in `additional_dependencies` depending on your p
 
 If you want to check the Github Wokflow configuration please take a look at this [section](#github-workflow)
 
+A useful command could be `$ mypy .`, which shows you all the typing issues you have in all your Python files. 
+
 ### Single-quotes
 > *Here at Rootstrap we prefer to use single-quoted strings over double quotes. For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method.*
 >
