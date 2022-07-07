@@ -254,6 +254,35 @@ You can check the `.pre-commit-config.yaml` file for more details.
 
 Note: the first commit after running step 2 will take a while but after that it will be pretty fast.
 
+### [mypy](https://mypy.readthedocs.io/en/stable/)
+*NOTE: By default, this package is already installed but it is NOT a stage added to pre-commit or Github Actions.*
+First, take a look at [typing hints](https://github.com/rootstrap/tech-guides/tree/master/python#typing-hints) document in the Python section of the tech guides.
+Cookiecutter already configures Mypy in `setup.cfg` file, if you need to change any of these configurations, please check the `[mypy]` section in this file.
+Adding this typing hint check library to pre-commit or GitHub Workflow Actions is optional, it depends on your project scope.
+If you add Mypy to pre-commit it will check the typing in the files you change on your commit, to add Mypy to pre-commit you will need to add something like the following: 
+<details>
+  <summary>.pre-commit-config.yaml <i>(Click &#x25B6; to display the file)</i></summary>
+
+```yaml
+#  .pre-commit-config.yaml
+...
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.942
+    hooks:
+      - id: mypy
+        additional_dependencies: [django-stubs]
+
+...
+```
+You may need more configuration in `additional_dependencies` depending on your project libraries because these pre-commit stages are running in an independent environment. 
+
+</details>
+
+If you want to check the Github Wokflow configuration please take a look at this [section](#github-workflow)
+
+A useful command could be `$ mypy .`, which shows you all the typing issues you have in all your Python files. 
+
 ### Single-quotes
 > *Here at Rootstrap we prefer to use single-quoted strings over double quotes. For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method.*
 >
@@ -315,115 +344,9 @@ plugins:
 ```
 </details>
 
-
-### Circle CI
-1. Set up the project at CircleCI. [guide](https://circleci.com/docs/2.0/getting-started/#setting-up-circleci)
-2. Create the folder `.circleci` and inner it the file `config.yml` with the following content.
-3. Create an environment variable to know where sends the CodeClimate report. [guide](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
-    - Name: `CC_TEST_REPORTER_ID`
-    - Value: `Test Coverage ID`
-4. Add badge to readme file. [guide](https://circleci.com/docs/2.0/status-badges/)
-```markdown
-# Template:
-.. image:: https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>.svg?style=svg
-    :target: https://circleci.com/<VCS>/<ORG_NAME>/<PROJECT_NAME>
-
-# Example:
-.. image:: https://circleci.com/gh/afmicc/cookiecutter_starter.svg?style=shield
-    :target: https://circleci.com/gh/afmicc/cookiecutter_starter
-    :alt: Tests status
-```
-
-<details>
-  <summary>.circleci/config.yml. <i>(Click &#x25B6; to display the file)</i></summary>
-
-```yml
-#  .circleci/config.yml
-
-version: 2.1
-
-jobs:
-  build:
-    docker:
-      - image: circleci/python:latest
-        environment:
-          DATABASE_URL: postgresql://postgres:@localhost:5432/circle_test?sslmode=disable
-
-      - image: circleci/postgres:alpine-postgis-ram
-
-    steps:
-      - checkout
-      - run:
-          name: Installing resoruces
-          command: |
-            pip install --upgrade pip==20.0.2
-            pip install pipenv
-
-      - restore_cache:
-          keys:
-            - venv-requirements-{{ checksum "Pipfile.lock" }}
-            - venv-requirements-
-
-      - run:
-          name: Installing pip requirements
-          command: |
-            pipenv install --dev
-
-      - run:
-          name: Checking PEP8 code style
-          command: |
-            pipenv run flake8 --count
-
-      - run:
-          name: Checking Black code formatter
-          command: |
-            pipenv run black . --check
-
-      - run:
-          name: Running tests
-          command: |
-            pipenv run coverage run -m pytest --ds=config.settings.test
-
-      - save_cache:
-          key: venv-requirements-{{ checksum "Pipfile.lock" }}
-          paths:
-            - ".venv"
-
-      - run:
-          name: Checking coverage
-          command: |
-            pipenv run coverage report --fail-under=90 -m
-            pipenv run coverage xml
-
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-            ./cc-test-reporter before-build
-            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
-```
-
-</details>
-
-**Extra**: If you want, you can run CircleCI locally.
-1. Install the [CircleCI CLI](https://circleci.com/docs/2.0/local-cli-getting-started/#section=getting-started)
-2. Run the command to generate the `process.yml` file: `$ circleci config process .circleci/config.yml > process.yml`
-3. Finally execute it: `$ circleci local execute -c process.yml --job build`
-4. *(Optional)* Add `process.yml` to `.gitignore`
-
-```
-# .gitignore
-
-### Continuous Integration
-
-process.yml
-
-```
-
 ### GitHub Workflow
 
-1. Create the path `.github/workflows` and inner it the file `python-app.yml` with the following content.
+1. Create the path `.github/workflows` and inner it the file `python-app.yml` (or any file name you want as long it is in this folder) with the following content.
 2. Create a project secret to use it at the config file. [guide](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
     - Name: `CC_TEST_REPORTER_ID`
     - Value: `Test Coverage ID`
@@ -498,6 +421,10 @@ jobs:
     - name: Checking Black code formatter
       run: |
         pipenv run black . --check
+
+    - name: Check typing
+      run: |
+        pipenv run mypy .
 
     - name: Running tests
       run: |
