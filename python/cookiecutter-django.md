@@ -225,22 +225,6 @@ exclude = '.*\/(migrations|settings)\/.*'
     - This command list all the issues found.
     - A useful command could be `$ black .` which resolves all the issues. Also, you can run `$ black . --diff` to watch the proposed changes.
 
-### If you want to have this in a new Github repository
-If you want to have this project in a new Github repository under the rootstrap organization, then follow these steps:
-1. Go to Github.
-2. Click on create new repository.
-3. Under Owner, select rootstrap.
-4. Write the name for the respository equal to the name of the root folder of the project created with DjangoCookieCutter.
-5. Copy the `git clone with ssh value` from the project.
-6. Go to the root folder project in your terminal.
-7. Run `$ git init`
-8. Run `$ git remote add origin <git clone with ssh value>`
-9. If your current branch hasn't the `main` branch, then run `$ git checkout -b main`
-10. Run `$ git add .`
-11. Run `$ git commit -m "First commit"`. You can change the `"First commit"` message with whatever you think is correct.
-12. Run `$ git push origin main`
-13. If you had to run `$ git checkout -b main` then now run `$ git branch -M main`
-
 ### [pre-commit](https://pre-commit.com/)
 *NOTE: By default this package is already installed.*
 
@@ -275,32 +259,81 @@ If you add Mypy to pre-commit it will check the typing in the files you change o
 
 ...
 ```
-You may need more configuration in `additional_dependencies` depending on your project libraries because these pre-commit stages are running in an independent environment. 
-
 </details>
-
 If you want to check the Github Wokflow configuration please take a look at this [section](#github-workflow)
 
-A useful command could be `$ mypy .`, which shows you all the typing issues you have in all your Python files. 
+A useful command could be `$ mypy .`, which shows you all the typing issues you have in all your Python files.
 
-### Single-quotes
-> *Here at Rootstrap we prefer to use single-quoted strings over double quotes. For docstrings we use double quotes since the chance of writing a ' is higher in the documentation string of a class or a method.*
->
-> [Rootstrap Guides/Python/String Quotes](https://github.com/rootstrap/tech-guides/tree/master/python#string-quotes)
+### exclude in mypy
+You may need to exclude files in mypy (for example configurations and migrations files). You can get this done
+adding a regexp list called `exclude` in the `setup.cfg` file. This is an example:
 
-To convert the existing double quotes to single ones, follow these steps:
-1. In your IDE, search by the regex `/(?<!"")(?<=(?!""").)"(?!"")/`
-2. Replace the occurrences with the single quote `'`
-3. Include only the python files: `*.py`
-4. Exclude migrations files and manage.py: `*migrations*, manage.py`
-5. Check that everything is well replaced.
+```yaml
+[mypy]
+python_version = 3.10
+check_untyped_defs = True
+ignore_missing_imports = True
+warn_unused_ignores = True
+warn_redundant_casts = True
+warn_unused_configs = True
+plugins = mypy_django_plugin.main
+exclude = (?x)(
+    urls\.py$ | merge_production_dotenvs_in_dotenv.py | api_router.py
+  )
 
-The VS Code configuration:
-- **Search**: `(?<!"")(?<=(?!""").)"(?!"")`
-- **Replace**: `'`
-- **files to include**: `*.py`
-- **files to exclude**: `*migrations*, manage.py`
+[mypy.plugins.django-stubs]
+django_settings_module = config.settings.test
 
+[mypy-*.migrations.*]
+# Django migrations should not produce any errors:
+ignore_errors = True
+```
+
+
+#### pre-commit and mypy
+Sometimes mypy can generate issues with pre-commit, because it can't recognize some used libraries in the project.
+The error shows that doesn't find some dependencies. If that is the case, add those libraries in the `.pre-commit-config.yaml` file.
+This is an example configuration:
+
+```yaml
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.942
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - boto3
+          - djangorestframework-simplejwt
+          - drf-spectacular
+          - django
+          - psycopg2-binary
+          - django-storages
+          - dj-rest-auth
+          - django-s3direct
+          - django-cors-headers
+          - djangorestframework
+          - django-allauth
+          - django-crispy-forms
+          - django-environ
+          - django-stubs
+          - django-drip-campaigns
+          - crispy-bootstrap5
+```
+
+## If you want to have this in a new Github repository
+If you want to have this project in a new Github repository under the rootstrap organization, then follow these steps:
+1. Go to Github.
+2. Click on create new repository.
+3. Under Owner, select rootstrap.
+4. Write the name for the respository equal to the name of the root folder of the project created with DjangoCookieCutter.
+5. Copy the `git clone with ssh value` from the project.
+6. Go to the root folder project in your terminal.
+7. Run `$ git init`
+8. Run `$ git remote add origin <git clone with ssh value>`
+9. If your current branch hasn't the `main` branch, then run `$ git checkout -b main`
+10. Run `$ git add .`
+11. Run `$ git commit -m "First commit"`. You can change the `"First commit"` message with whatever you think is correct.
+12. Run `$ git push origin main`
+13. If you had to run `$ git checkout -b main` then now run `$ git branch -M main`
 
 ## CI
 
