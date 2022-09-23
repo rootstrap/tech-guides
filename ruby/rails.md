@@ -966,6 +966,10 @@ when you need to retrieve a single record by some attributes.
   end
   ```
 
+* <a name="avoid-float"></a>
+  Avoid `FLOAT` to store rational numbers. `FLOAT` does not store precise values. Either convert the rational to a base unit (eg: store money in cents as an integer), or use the `DECIMAL` type, which does store precise values.
+<sup>[[link](#avoid-float)]</sup>
+
 ## Views
 
 * <a name="no-direct-model-view"></a>
