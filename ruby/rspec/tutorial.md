@@ -8,7 +8,7 @@ There are some key parts in an RSpec test:
 * `before`: hook that executes before a  group of tests, depending where is located, if it’s located inside a describe or context, it will be executed before  the tests inside the describe or context. By default runs before each test, but you can pass the option `:all` to run before all of them only.  It’s usually used for testing setup
 * `after`: same as before, but after the tests, it’s usually used for teardown setup.
 * `context`: same behavior as `describe` but it’s used for a semantic purpose: each block of tests inside the context behaves in a certain way or under certain conditions. As an example, you can check it in model specs.
-* `let`: it's a helper method for variables. The value will be cached across multiple calls in the same example but not across examples.
+* `let`: it's a helper method for variables. The value will be cached across multiple calls in the same example but not across examples. By default `let` variables are lazy. [Read more - let vs let!](./tutorial/let-vs-let.md).
 
 ## Model specs
 They are straightforward unit tests which tests small parts of the system, they shouldn’t test private methods, just model’s methods and callbacks. These unit tests follows the same rules as services, jobs, mailers and any other ruby classes, except controllers that needs some setup.
