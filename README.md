@@ -31,6 +31,7 @@ The guidelines exploit Git's advantages with regards to collaborative work, enco
 - [RSpec](./ruby/rspec/README.md)
 - [Django](./python/cookiecutter-django.md)
 - [Node.Js](./node/README.md)
+- [Flutter](./flutter/README.md)
 
 ### Hosting Platforms
 
