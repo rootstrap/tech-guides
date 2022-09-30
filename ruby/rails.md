@@ -84,6 +84,17 @@ it is.
   ```
 
 ## Routing
+* <a name="resource-routing"></a>
+  Prefer `resources` over custom routes.
+<sup>[[link](#resource-routing)]</sup>
+
+  ```Ruby
+  # bad
+  get 'topics/:id', to: 'topics#show'
+
+  # good
+  resources :topics, only: :show
+  ```
 
 * <a name="member-collection-routes"></a>
   When you need to add more actions to a RESTful resource (do you really need
