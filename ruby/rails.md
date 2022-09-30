@@ -199,6 +199,10 @@ it is.
   Don't use `match` to define any routes unless there is need to map multiple request types among `[:get, :post, :patch, :put, :delete]` to a single action using `:via` option.
 <sup>[[link](#no-match-routes)]</sup>
 
+* <a name="non-existing-routes"></a>
+  Don't create routes that are not being used. Use `:only` and `:except` to generate only the routes you actually need.
+<sup>[[link](#non-existing-routes)]</sup>
+
 ## Controllers
 
 * <a name="skinny-controllers"></a>
