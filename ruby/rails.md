@@ -84,6 +84,17 @@ it is.
   ```
 
 ## Routing
+* <a name="resource-routing"></a>
+  Prefer `resources` over custom routes.
+<sup>[[link](#resource-routing)]</sup>
+
+  ```Ruby
+  # bad
+  get 'topics/:id', to: 'topics#show'
+
+  # good
+  resources :topics, only: :show
+  ```
 
 * <a name="member-collection-routes"></a>
   When you need to add more actions to a RESTful resource (do you really need
@@ -187,6 +198,10 @@ it is.
 * <a name="no-match-routes"></a>
   Don't use `match` to define any routes unless there is need to map multiple request types among `[:get, :post, :patch, :put, :delete]` to a single action using `:via` option.
 <sup>[[link](#no-match-routes)]</sup>
+
+* <a name="non-existing-routes"></a>
+  Don't create routes that are not being used. Use `:only` and `:except` to generate only the routes you actually need.
+<sup>[[link](#non-existing-routes)]</sup>
 
 ## Controllers
 
