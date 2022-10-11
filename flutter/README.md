@@ -242,9 +242,31 @@ Do you relly needed it? It makes more sense to write the code or copy the code t
 - How frequently does the package get updated? This is really important if we want to take advantage of the latest Dart features.
 
 ### Tests
-* Write tests for critical functionality
+Write tests for critical functionality
+
 The contingencies of relying on manual testing will always be there, having an automated set of tests can help you save a notable amount of time and effort. As Flutter mainly targets multiple platforms, testing each and every functionality after every change would be time-consuming and call for a lot of repeated effort.
 
 Let’s face the facts, having 100% code coverage for testing will always be the best option, however, it might not always be possible on the basis of available time and budget. Nonetheless, it’s still essential to have at least tests to cover the critical functionality of the app.
 
 Unit and widget tests are the topmost options to go with from the very beginning and it’s not at all tedious as compared to integration tests.
+
+- Unit test
+  - For all code beside the UI Widgets.
+  - One set of unit tests usually tests a single class.
+- Widget test
+  - For testing a single widget
+- Integration test
+  - For testing large parts of the app from the user perspective
+
+|   | Unit  | Widget  | Integration  |
+| ------------ | ------------ | ------------ | ------------ |
+| Confidence | Low  | Higher | Highest  |
+| Maintenance cost | Low | Higher | Highest |
+| Dependencies | Few | More | Most |
+| Excecution speed | Quick  |  Quick |  Slow |
+
+Official documentation
+https://docs.flutter.dev/cookbook/testing/unit/introduction
+
+Demo project
+https://github.com/huanachin/flutter_unit_test
