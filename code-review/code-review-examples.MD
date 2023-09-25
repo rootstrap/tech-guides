@@ -9,9 +9,6 @@ You can comment like this, asking for his/her opinion and using emojis
 
 It is important trying to maintain a good environment when at work, because at the end, we pass a big part of our week on it.
 
-(create pr to show bad/good comment)
-(explain in the readme that it is just our project, and why)
-
 ### Ask if you don't understand something
 When you don't understand something or it's not completely clear to you why a decision was took, just ask. It's always better to clear all doubts than to approve something you are not sure.
 
