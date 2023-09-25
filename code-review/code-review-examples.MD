@@ -2,10 +2,10 @@
 Try to be polite, and empathetic, it is always better to enjoy our daily basis with our colleagues
 
 If you need to request a change, instead of comenthing like this
-`Change this code because it doesn't work`
+[Agressive comment](https://github.com/rootstrap/tech-guides/pull/84#discussion_r1336005098)
 
 You can comment like this, asking for his/her opinion and using emojis
-`What if you change this for that? what do you think? :thinking: `
+[Good comment](https://github.com/rootstrap/tech-guides/pull/84#discussion_r1336010709)
 
 It is important trying to maintain a good environment when at work, because at the end, we pass a big part of our week on it.
 
