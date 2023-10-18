@@ -1,0 +1,11 @@
+
+<% @posts = Post.all %>
+
+<% @posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <ul>
+    <% post.comments.each do |comment| %>
+      <li><%= comment.body %></li>
+    <% end %>
+  </ul>
+<% end %>
